@@ -13,7 +13,7 @@ You will parse the provided **`dummyData.json`** and render its nested structure
 ## Requirements
 
 1. **Data Rendering (Required)**
-   - The backend should serve the data from `dummyData.json` via a REST endpoint (e.g., `/api/sales-reps`).
+   - (BE-REQ001) The backend should serve the data from `dummyData.json` via a REST endpoint (e.g., `/api/sales-reps`). 
    - The frontend must fetch this data asynchronously and display it in a meaningful way (e.g., a list of sales representatives, their deals, skills, etc.).
    - Demonstrate handling of nested JSON structures. For example, you might display each sales rep’s deals, status, and client details.
 
@@ -23,12 +23,12 @@ You will parse the provided **`dummyData.json`** and render its nested structure
    - Show a loading state while data is being fetched, and handle potential errors gracefully.
 
 3. **Backend API (Required)**
-   - Use **FastAPI** to create an endpoint that returns the JSON data.
-   - Implement CORS if needed, so the Next.js app can successfully request data from the FastAPI server.
-   - Ensure your API is well-structured and documented (e.g., make use of FastAPI’s automatic docs or docstrings).
+   - (BE-REQ002) Use **FastAPI** to create an endpoint that returns the JSON data.
+   - (BE-REQ003) Implement CORS if needed, so the Next.js app can successfully request data from the FastAPI server.
+   - (BE-REQ004) Ensure your API is well-structured and documented (e.g., make use of FastAPI’s automatic docs or docstrings).
 
 4. **Bonus: AI Feature (Optional)**
-   - Add an endpoint (e.g., `/api/ai`) that accepts user input (e.g., a question) and returns a generated or placeholder response.
+   - (BE-REQ005) Add an endpoint (e.g., `/api/ai`) that accepts user input (e.g., a question) and returns a generated or placeholder response.
    - Integrate this into the frontend with a simple form or input field where the user can type a question and view the AI’s response.
    - The AI logic can be **mocked** or **rule-based** if you do not wish to integrate an actual AI service. If you prefer, you may call any AI API you have access to (such as OpenAI, etc.).
 
