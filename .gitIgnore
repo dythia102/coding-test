@@ -7,6 +7,7 @@ __pycache__/
 
 # VSCode
 .vscode/settings.json
+.devcontainer
 
 # Docker
 *.log
@@ -17,3 +18,6 @@ __pycache__/
 # System
 .DS_Store
 Thumbs.db
+
+# misc
+backend/dummyData.json
