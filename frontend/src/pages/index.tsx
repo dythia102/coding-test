@@ -2,6 +2,15 @@ import { useState } from "react";
 import { askAI } from "@/lib/api";
 import { useSalesReps } from "@/features/salesReps/useSalesReps";
 import SalesRepList from "@/components/SalesRepList";
+import {
+  Box,
+  Button,
+  Container,
+  TextField,
+  Typography,
+  CircularProgress,
+  Paper
+} from "@mui/material";
 
 export default function Home() {
   const { salesReps, loading } = useSalesReps();
@@ -18,31 +27,50 @@ export default function Home() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Next.js + FastAPI Sample (TypeScript)</h1>
+    <Container maxWidth="md" sx={{ py: 4 }}>
+      <Typography variant="h4" gutterBottom color="primary">
+        Next.js + FastAPI Sample (TypeScript)
+      </Typography>
 
-      <section style={{ marginBottom: "2rem" }}>
-        <h2>Sales Representatives</h2>
-        {loading ? <p>Loading...</p> : <SalesRepList reps={salesReps} />}
-      </section>
+      <Typography variant="h5" gutterBottom>
+        Sales Representatives
+      </Typography>
 
-      <section>
-        <h2>Ask a Question (AI Endpoint)</h2>
-        <input
-          type="text"
-          placeholder="Enter your question..."
+      <Paper elevation={2} sx={{ p: 2, mb: 4 }}>
+        {loading ? (
+          <Box display="flex" justifyContent="center" py={4}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <SalesRepList reps={salesReps} />
+        )}
+      </Paper>
+
+      <Typography variant="h5" gutterBottom>
+        Ask a Question (AI Endpoint)
+      </Typography>
+
+      <Box component="form" noValidate autoComplete="off">
+        <TextField
+          label="Enter your question"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
+          fullWidth
+          margin="normal"
         />
-        <button onClick={handleAskQuestion} style={{ marginLeft: "0.5rem" }}>
+        <Button variant="contained" onClick={handleAskQuestion}>
           Ask
-        </button>
-        {answer && (
-          <div style={{ marginTop: "1rem" }}>
-            <strong>AI Response:</strong> {answer}
-          </div>
-        )}
-      </section>
-    </div>
+        </Button>
+      </Box>
+
+      {answer && (
+        <Paper elevation={1} sx={{ mt: 3, p: 2 }}>
+          <Typography variant="subtitle1" color="text.secondary">
+            AI Response:
+          </Typography>
+          <Typography>{answer}</Typography>
+        </Paper>
+      )}
+    </Container>
   );
 }
