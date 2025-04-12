@@ -5,3 +5,16 @@
 - (BE-REQ004) Ensure your API is well-structured and documented (e.g., make use of FastAPI’s automatic docs or docstrings).
 - (BE-REQ005) Add an endpoint (e.g., `/api/ai`) that accepts user input (e.g., a question) and returns a generated or placeholder response.
 - Add shell script to test deployment requirement
+
+13 April 2005
+- enhance /api/sales-reps with:
+    - Pagination
+    - Filtering (including nested client filters)
+    - Case-insensitive search
+    - Sorting with allowed fields
+    - Typed request/response models
+    - Metadata and dynamic filter options
+    - Caching for performance
+    - Clean OpenAPI docs and Swagger UI
+    - Test coverage with pytest, ready to automate
+- add new api /api/sales-reps/filters
