@@ -2,7 +2,8 @@ import { useState } from "react";
 import { askAI } from "@/lib/api";
 import { useSalesReps, useSalesRepsFilters } from "@/features/salesReps/useSalesReps";
 import SalesRepList from "@/components/SalesRepList";
-import { Pagination, MenuItem } from "@mui/material";
+import SalesRepFilters from "@/components/SalesRepFilters";
+import { Pagination } from "@mui/material";
 import { useDebounce } from "@/hooks/useDebounce";
 import {
   Box,
@@ -103,112 +104,50 @@ export default function Home() {
             transition: "all 0.2s ease-in-out",
           }}
         >
-          <Box display="flex" gap={2} flexWrap="wrap" mb={2}>
-            {/* Filter Fields */}
-            <TextField
-              label="Region"
-              value={region}
-              onChange={(e) => {
-                setRegion(e.target.value);
-                setPage(1);
-              }}
-              select
-              fullWidth
-              disabled={loadingFilters}
-            >
-              <MenuItem value="">All</MenuItem>
-              {filters.regions.map((r) => (
-                <MenuItem key={r} value={r}>
-                  {r}
-                </MenuItem>
-              ))}
-            </TextField>
+          <SalesRepFilters
+            filters={filters}
+            loading={loadingFilters}
+            region={region}
+            role={role}
+            industry={industry}
+            sortBy={sortBy}
+            sortOrder={sortOrder}
+            search={search}
+            onRegionChange={(val) => {
+              setRegion(val);
+              setPage(1);
+            }}
+            onRoleChange={(val) => {
+              setRole(val);
+              setPage(1);
+            }}
+            onIndustryChange={(val) => {
+              setIndustry(val);
+              setPage(1);
+            }}
+            onSortByChange={(val) => {
+              setSortBy(val as "name" | "region" | "role" | "");
+              setPage(1);
+            }}
+            onSortOrderChange={(val) => {
+              setSortOrder(val);
+              setPage(1);
+            }}
+            onSearchChange={(val) => {
+              setSearch(val);
+              setPage(1);
+            }}
+            onClearFilters={() => {
+              setRegion("");
+              setRole("");
+              setIndustry("");
+              setSearch("");
+              setSortBy("");
+              setSortOrder("asc");
+              setPage(1);
+            }}
+          />
 
-            <TextField
-              label="Role"
-              value={role}
-              onChange={(e) => {
-                setRole(e.target.value);
-                setPage(1);
-              }}
-              select
-              fullWidth
-              disabled={loadingFilters}
-            >
-              <MenuItem value="">All</MenuItem>
-              {filters.roles.map((r) => (
-                <MenuItem key={r} value={r}>
-                  {r}
-                </MenuItem>
-              ))}
-            </TextField>
-
-            <TextField
-              label="Industry"
-              value={industry}
-              onChange={(e) => {
-                setIndustry(e.target.value);
-                setPage(1);
-              }}
-              select
-              fullWidth
-              disabled={loadingFilters}
-            >
-              <MenuItem value="">All</MenuItem>
-              {filters.industries.map((ind) => (
-                <MenuItem key={ind} value={ind}>
-                  {ind}
-                </MenuItem>
-              ))}
-            </TextField>
-
-            <TextField
-              label="Sort By"
-              value={sortBy}
-              onChange={(e) => {
-                setSortBy(e.target.value as typeof sortBy);
-                setPage(1);
-              }}
-              select
-              fullWidth
-            >
-              <MenuItem value="">Default</MenuItem>
-              <MenuItem value="name">Name</MenuItem>
-              <MenuItem value="region">Region</MenuItem>
-              <MenuItem value="role">Role</MenuItem>
-            </TextField>
-
-            <TextField
-              label={`Sort Order${sortBy ? ` (${sortBy})` : ""}`}
-              value={sortOrder}
-              onChange={(e) => {
-                setSortOrder(e.target.value as typeof sortOrder);
-                setPage(1);
-              }}
-              select
-              fullWidth
-              disabled={!sortBy}
-            >
-              <MenuItem value="asc">Ascending (A → Z)</MenuItem>
-              <MenuItem value="desc">Descending (Z → A)</MenuItem>
-            </TextField>
-
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => {
-                setRegion("");
-                setRole("");
-                setIndustry("");
-                setSearch("");
-                setSortBy("");
-                setSortOrder("asc");
-                setPage(1);
-              }}
-            >
-              Clear Filters
-            </Button>
-          </Box>
 
           <TextField
             label="Search by name or skill"

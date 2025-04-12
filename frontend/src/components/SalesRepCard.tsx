@@ -17,6 +17,7 @@ interface Props {
 }
 
 const SalesRepCard = memo(function SalesRepCard({ rep, maxValue }: Props) {
+  // TODO: Need BE enhancement get total deal from be
   const totalValue = rep.deals.reduce((sum, deal) => sum + deal.value, 0);
   const progress = maxValue > 0 ? (totalValue / maxValue) * 100 : 0;
 
