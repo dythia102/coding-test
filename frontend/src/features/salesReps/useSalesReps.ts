@@ -20,3 +20,29 @@ export const useSalesReps = (queryParams: SalesRepsQuery = {}) => {
 
   return { salesReps, total, loading };
 };
+
+export interface SalesRepFilterOptions {
+  regions: string[];
+  roles: string[];
+  industries: string[];
+}
+
+export const useSalesRepsFilters = () => {
+  const [filters, setFilters] = useState<SalesRepFilterOptions>({
+    regions: [],
+    roles: [],
+    industries: [],
+  });
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/sales-reps/filters")
+      .then((res) => res.json())
+      .then(setFilters)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, []);
+
+  return { filters, loading };
+};

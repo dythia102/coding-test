@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { askAI } from "@/lib/api";
-import { useSalesReps } from "@/features/salesReps/useSalesReps";
+import { useSalesReps, useSalesRepsFilters } from "@/features/salesReps/useSalesReps";
 import SalesRepList from "@/components/SalesRepList";
-import { Pagination } from "@mui/material";
+import { Pagination, MenuItem } from "@mui/material";
+
 import {
   Box,
   Button,
@@ -18,11 +19,20 @@ export default function Home() {
   const [answer, setAnswer] = useState("");
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [region, setRegion] = useState("");
+  const [role, setRole] = useState("");
+  const [industry, setIndustry] = useState("");
+
+
+  const { filters, loading: loadingFilters } = useSalesRepsFilters();
 
   const { salesReps, loading, total } = useSalesReps({
     search_term: search,
     page,
     page_size: 5,
+    regions: region ? [region] : undefined,
+    roles: role ? [role] : undefined,
+    client_industries: industry ? [industry] : undefined,
   });
 
   const handleAskQuestion = async () => {
@@ -73,6 +83,64 @@ export default function Home() {
           Sales Representatives
         </Typography>
 
+        <Box display="flex" gap={2} flexWrap="wrap" mb={2}>
+          <TextField
+            label="Region"
+            value={region}
+            onChange={(e) => {
+              setRegion(e.target.value);
+              setPage(1);
+            }}
+            select
+            fullWidth
+            disabled={loadingFilters}
+          >
+            <MenuItem value="">All</MenuItem>
+            {filters.regions.map((r) => (
+              <MenuItem key={r} value={r}>
+                {r}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <TextField
+            label="Role"
+            value={role}
+            onChange={(e) => {
+              setRole(e.target.value);
+              setPage(1);
+            }}
+            select
+            fullWidth
+            disabled={loadingFilters}
+          >
+            <MenuItem value="">All</MenuItem>
+            {filters.roles.map((r) => (
+              <MenuItem key={r} value={r}>
+                {r}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <TextField
+            label="Industry"
+            value={industry}
+            onChange={(e) => {
+              setIndustry(e.target.value);
+              setPage(1);
+            }}
+            select
+            fullWidth
+            disabled={loadingFilters}
+          >
+            <MenuItem value="">All</MenuItem>
+            {filters.industries.map((ind) => (
+              <MenuItem key={ind} value={ind}>
+                {ind}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Box>
         <TextField
           label="Search by name or skill"
           value={search}
