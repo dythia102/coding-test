@@ -1,20 +1,12 @@
-import { useState, useEffect } from "react";
-import { fetchSalesReps, askAI, SalesRep } from "../lib/api";
+import { useState } from "react";
+import { askAI } from "@/lib/api";
+import { useSalesReps } from "@/features/salesReps/useSalesReps";
+import SalesRepList from "@/components/SalesRepList";
 
 export default function Home() {
-  const [salesReps, setSalesReps] = useState<SalesRep[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [question, setQuestion] = useState<string>("");
-  const [answer, setAnswer] = useState<string>("");
-
-  useEffect(() => {
-    fetchSalesReps()
-      .then((data) => setSalesReps(data.salesReps || []))
-      .catch((err) => {
-        console.error("Failed to fetch sales reps:", err);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  const { salesReps, loading } = useSalesReps();
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
 
   const handleAskQuestion = async () => {
     try {
@@ -31,19 +23,7 @@ export default function Home() {
 
       <section style={{ marginBottom: "2rem" }}>
         <h2>Sales Representatives</h2>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <ul>
-            {salesReps.map((rep) => (
-              <li key={rep.id} style={{ marginBottom: "1rem" }}>
-                <strong>{rep.name}</strong> - {rep.role} ({rep.region})
-                <br />
-                Skills: {rep.skills.join(", ")}
-              </li>
-            ))}
-          </ul>
-        )}
+        {loading ? <p>Loading...</p> : <SalesRepList reps={salesReps} />}
       </section>
 
       <section>
