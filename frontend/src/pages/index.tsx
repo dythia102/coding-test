@@ -2,6 +2,7 @@ import { useState } from "react";
 import { askAI } from "@/lib/api";
 import { useSalesReps } from "@/features/salesReps/useSalesReps";
 import SalesRepList from "@/components/SalesRepList";
+import { Pagination } from "@mui/material";
 import {
   Box,
   Button,
@@ -13,9 +14,16 @@ import {
 } from "@mui/material";
 
 export default function Home() {
-  const { salesReps, loading } = useSalesReps();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+
+  const { salesReps, loading, total } = useSalesReps({
+    search_term: search,
+    page,
+    page_size: 5,
+  });
 
   const handleAskQuestion = async () => {
     try {
@@ -64,12 +72,35 @@ export default function Home() {
         <Typography variant="h5" gutterBottom>
           Sales Representatives
         </Typography>
+
+        <TextField
+          label="Search by name or skill"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1); // reset to first page on search
+          }}
+          fullWidth
+          margin="normal"
+        />
+
         {loading ? (
           <Box display="flex" justifyContent="center" py={4}>
             <CircularProgress />
           </Box>
         ) : (
-          <SalesRepList reps={salesReps} />
+          <>
+            <SalesRepList reps={salesReps} />
+
+            <Box display="flex" justifyContent="center" mt={2}>
+              <Pagination
+                count={Math.ceil(total / 5)}
+                page={page}
+                onChange={(_, value) => setPage(value)}
+                color="primary"
+              />
+            </Box>
+          </>
         )}
       </Paper>
     </Container>
