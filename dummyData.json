@@ -1,85 +1,2004 @@
 {
-    "salesReps": [
-      {
-        "id": 1,
-        "name": "Alice",
-        "role": "Senior Sales Executive",
-        "region": "North America",
-        "skills": ["Negotiation", "CRM", "Client Relations"],
-        "deals": [
-          { "client": "Acme Corp", "value": 120000, "status": "Closed Won" },
-          { "client": "Beta Ltd", "value": 50000, "status": "In Progress" },
-          { "client": "Omega Inc", "value": 85000, "status": "Closed Lost" }
-        ],
-        "clients": [
-          { "name": "Acme Corp", "industry": "Manufacturing", "contact": "alice@acmecorp.com" },
-          { "name": "Beta Ltd", "industry": "Retail", "contact": "contact@betaltd.com" }
-        ]
-      },
-      {
-        "id": 2,
-        "name": "Bob",
-        "role": "Sales Representative",
-        "region": "Europe",
-        "skills": ["Lead Generation", "Presentation", "Negotiation"],
-        "deals": [
-          { "client": "Gamma Inc", "value": 75000, "status": "Closed Lost" },
-          { "client": "Delta LLC", "value": 90000, "status": "Closed Won" },
-          { "client": "Sigma Corp", "value": 65000, "status": "In Progress" }
-        ],
-        "clients": [
-          { "name": "Gamma Inc", "industry": "Tech", "contact": "info@gammainc.com" },
-          { "name": "Delta LLC", "industry": "Finance", "contact": "support@deltallc.com" }
-        ]
-      },
-      {
-        "id": 3,
-        "name": "Charlie",
-        "role": "Account Manager",
-        "region": "Asia-Pacific",
-        "skills": ["Customer Service", "Sales Strategy", "Data Analysis"],
-        "deals": [
-          { "client": "Epsilon Ltd", "value": 110000, "status": "In Progress" },
-          { "client": "Zeta Corp", "value": 60000, "status": "Closed Won" },
-          { "client": "Theta Enterprises", "value": 70000, "status": "Closed Lost" }
-        ],
-        "clients": [
-          { "name": "Epsilon Ltd", "industry": "Healthcare", "contact": "contact@epsilonltd.com" },
-          { "name": "Zeta Corp", "industry": "Finance", "contact": "sales@zetacorp.com" }
-        ]
-      },
-      {
-        "id": 4,
-        "name": "Dana",
-        "role": "Business Development Manager",
-        "region": "South America",
-        "skills": ["Strategic Partnerships", "Negotiation", "Market Analysis"],
-        "deals": [
-          { "client": "Eta Co", "value": 130000, "status": "In Progress" },
-          { "client": "Theta Inc", "value": 80000, "status": "Closed Won" },
-          { "client": "Iota Group", "value": 55000, "status": "Closed Lost" }
-        ],
-        "clients": [
-          { "name": "Eta Co", "industry": "Energy", "contact": "info@etaco.com" },
-          { "name": "Theta Inc", "industry": "Telecommunications", "contact": "sales@thetainc.com" }
-        ]
-      },
-      {
-        "id": 5,
-        "name": "Eve",
-        "role": "Regional Sales Manager",
-        "region": "Middle East",
-        "skills": ["Relationship Building", "Negotiation", "Market Expansion"],
-        "deals": [
-          { "client": "Iota Ltd", "value": 95000, "status": "Closed Won" },
-          { "client": "Kappa LLC", "value": 45000, "status": "In Progress" },
-          { "client": "Lambda Partners", "value": 105000, "status": "Closed Lost" }
-        ],
-        "clients": [
-          { "name": "Iota Ltd", "industry": "Hospitality", "contact": "contact@iotaltd.com" },
-          { "name": "Kappa LLC", "industry": "Retail", "contact": "info@kappallc.com" }
-        ]
-      }
-    ]
-  }
-  
+  "salesReps": [
+    {
+      "id": 1,
+      "name": "Oliver",
+      "role": "Enterprise Sales",
+      "region": "South America",
+      "skills": [
+        "Lead Generation",
+        "Strategic Partnerships",
+        "Market Analysis"
+      ],
+      "deals": [
+        {
+          "client": "Client1A",
+          "value": 123067,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client1B",
+          "value": 132595,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client1C",
+          "value": 80386,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client1A",
+          "industry": "Logistics",
+          "contact": "oliver@client1a.com"
+        },
+        {
+          "name": "Client1B",
+          "industry": "Healthcare",
+          "contact": "contact@client1b.com"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Samuel",
+      "role": "Regional Account Executive",
+      "region": "Asia-Pacific",
+      "skills": [
+        "Sales Strategy",
+        "Lead Generation",
+        "Customer Service"
+      ],
+      "deals": [
+        {
+          "client": "Client2A",
+          "value": 58687,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client2B",
+          "value": 77639,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client2C",
+          "value": 92981,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client2A",
+          "industry": "Tech",
+          "contact": "samuel@client2a.com"
+        },
+        {
+          "name": "Client2B",
+          "industry": "FMCG",
+          "contact": "contact@client2b.com"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Michael",
+      "role": "Field Sales",
+      "region": "Asia-Pacific",
+      "skills": [
+        "Market Analysis",
+        "CRM",
+        "Cold Calling"
+      ],
+      "deals": [
+        {
+          "client": "Client3A",
+          "value": 120876,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client3B",
+          "value": 66763,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client3C",
+          "value": 97678,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client3A",
+          "industry": "FMCG",
+          "contact": "michael@client3a.com"
+        },
+        {
+          "name": "Client3B",
+          "industry": "Consulting",
+          "contact": "contact@client3b.com"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Oliver",
+      "role": "Business Development Manager",
+      "region": "Asia-Pacific",
+      "skills": [
+        "Negotiation",
+        "CRM",
+        "Product Demos"
+      ],
+      "deals": [
+        {
+          "client": "Client4A",
+          "value": 53777,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client4B",
+          "value": 75182,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client4C",
+          "value": 124285,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client4A",
+          "industry": "Software",
+          "contact": "oliver@client4a.com"
+        },
+        {
+          "name": "Client4B",
+          "industry": "Manufacturing",
+          "contact": "contact@client4b.com"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Jackson",
+      "role": "Customer Success Executive",
+      "region": "Asia-Pacific",
+      "skills": [
+        "CRM",
+        "Sales Strategy",
+        "Presentation"
+      ],
+      "deals": [
+        {
+          "client": "Client5A",
+          "value": 128649,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client5B",
+          "value": 132679,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client5C",
+          "value": 79589,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client5A",
+          "industry": "FMCG",
+          "contact": "jackson@client5a.com"
+        },
+        {
+          "name": "Client5B",
+          "industry": "Tech",
+          "contact": "contact@client5b.com"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Mateo",
+      "role": "Business Development Manager",
+      "region": "Africa",
+      "skills": [
+        "Relationship Building",
+        "CRM",
+        "Cold Calling"
+      ],
+      "deals": [
+        {
+          "client": "Client6A",
+          "value": 130291,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client6B",
+          "value": 56895,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client6C",
+          "value": 77321,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client6A",
+          "industry": "Tech",
+          "contact": "mateo@client6a.com"
+        },
+        {
+          "name": "Client6B",
+          "industry": "Consulting",
+          "contact": "contact@client6b.com"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "David",
+      "role": "Territory Sales Lead",
+      "region": "Asia-Pacific",
+      "skills": [
+        "Product Demos",
+        "Customer Service",
+        "Lead Generation"
+      ],
+      "deals": [
+        {
+          "client": "Client7A",
+          "value": 97232,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client7B",
+          "value": 116420,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client7C",
+          "value": 40682,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client7A",
+          "industry": "Finance",
+          "contact": "david@client7a.com"
+        },
+        {
+          "name": "Client7B",
+          "industry": "Software",
+          "contact": "contact@client7b.com"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Daniel",
+      "role": "Regional Account Executive",
+      "region": "North America",
+      "skills": [
+        "Data Analysis",
+        "Lead Generation",
+        "Strategic Partnerships"
+      ],
+      "deals": [
+        {
+          "client": "Client8A",
+          "value": 48121,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client8B",
+          "value": 82017,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client8C",
+          "value": 95918,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client8A",
+          "industry": "Consulting",
+          "contact": "daniel@client8a.com"
+        },
+        {
+          "name": "Client8B",
+          "industry": "Finance",
+          "contact": "contact@client8b.com"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Sebastian",
+      "role": "Business Development Manager",
+      "region": "Middle East",
+      "skills": [
+        "Lead Generation",
+        "Data Analysis",
+        "Customer Service"
+      ],
+      "deals": [
+        {
+          "client": "Client9A",
+          "value": 128672,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client9B",
+          "value": 145612,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client9C",
+          "value": 126131,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client9A",
+          "industry": "Manufacturing",
+          "contact": "sebastian@client9a.com"
+        },
+        {
+          "name": "Client9B",
+          "industry": "Healthcare",
+          "contact": "contact@client9b.com"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Aiden",
+      "role": "Territory Sales Lead",
+      "region": "Africa",
+      "skills": [
+        "Lead Generation",
+        "Cold Calling",
+        "Negotiation"
+      ],
+      "deals": [
+        {
+          "client": "Client10A",
+          "value": 137046,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client10B",
+          "value": 132835,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client10C",
+          "value": 69009,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client10A",
+          "industry": "Retail",
+          "contact": "aiden@client10a.com"
+        },
+        {
+          "name": "Client10B",
+          "industry": "Retail",
+          "contact": "contact@client10b.com"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Lucas",
+      "role": "Account Manager",
+      "region": "Middle East",
+      "skills": [
+        "Product Demos",
+        "Strategic Partnerships",
+        "Negotiation"
+      ],
+      "deals": [
+        {
+          "client": "Client11A",
+          "value": 145389,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client11B",
+          "value": 46889,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client11C",
+          "value": 84710,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client11A",
+          "industry": "Consulting",
+          "contact": "lucas@client11a.com"
+        },
+        {
+          "name": "Client11B",
+          "industry": "Finance",
+          "contact": "contact@client11b.com"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Levi",
+      "role": "Territory Sales Lead",
+      "region": "South America",
+      "skills": [
+        "Lead Generation",
+        "Sales Strategy",
+        "Cold Calling"
+      ],
+      "deals": [
+        {
+          "client": "Client12A",
+          "value": 54776,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client12B",
+          "value": 118313,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client12C",
+          "value": 125148,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client12A",
+          "industry": "Software",
+          "contact": "levi@client12a.com"
+        },
+        {
+          "name": "Client12B",
+          "industry": "Healthcare",
+          "contact": "contact@client12b.com"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Mason",
+      "role": "Field Sales",
+      "region": "Asia-Pacific",
+      "skills": [
+        "Negotiation",
+        "Strategic Partnerships",
+        "Presentation"
+      ],
+      "deals": [
+        {
+          "client": "Client13A",
+          "value": 50146,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client13B",
+          "value": 85542,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client13C",
+          "value": 106623,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client13A",
+          "industry": "Engineering",
+          "contact": "mason@client13a.com"
+        },
+        {
+          "name": "Client13B",
+          "industry": "Retail",
+          "contact": "contact@client13b.com"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Noah",
+      "role": "Sales Representative",
+      "region": "South America",
+      "skills": [
+        "Lead Generation",
+        "Data Analysis",
+        "Negotiation"
+      ],
+      "deals": [
+        {
+          "client": "Client14A",
+          "value": 69656,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client14B",
+          "value": 82249,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client14C",
+          "value": 104950,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client14A",
+          "industry": "Healthcare",
+          "contact": "noah@client14a.com"
+        },
+        {
+          "name": "Client14B",
+          "industry": "Logistics",
+          "contact": "contact@client14b.com"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Elijah",
+      "role": "Customer Success Executive",
+      "region": "Asia-Pacific",
+      "skills": [
+        "Market Analysis",
+        "Relationship Building",
+        "Lead Generation"
+      ],
+      "deals": [
+        {
+          "client": "Client15A",
+          "value": 66691,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client15B",
+          "value": 143749,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client15C",
+          "value": 111515,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client15A",
+          "industry": "Tech",
+          "contact": "elijah@client15a.com"
+        },
+        {
+          "name": "Client15B",
+          "industry": "Engineering",
+          "contact": "contact@client15b.com"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Owen",
+      "role": "Territory Sales Lead",
+      "region": "South America",
+      "skills": [
+        "Market Analysis",
+        "Lead Generation",
+        "Product Demos"
+      ],
+      "deals": [
+        {
+          "client": "Client16A",
+          "value": 48059,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client16B",
+          "value": 42208,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client16C",
+          "value": 79381,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client16A",
+          "industry": "FMCG",
+          "contact": "owen@client16a.com"
+        },
+        {
+          "name": "Client16B",
+          "industry": "Logistics",
+          "contact": "contact@client16b.com"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Sebastian",
+      "role": "Field Sales",
+      "region": "North America",
+      "skills": [
+        "Relationship Building",
+        "Presentation",
+        "Lead Generation"
+      ],
+      "deals": [
+        {
+          "client": "Client17A",
+          "value": 99055,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client17B",
+          "value": 57750,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client17C",
+          "value": 68803,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client17A",
+          "industry": "Consulting",
+          "contact": "sebastian@client17a.com"
+        },
+        {
+          "name": "Client17B",
+          "industry": "Software",
+          "contact": "contact@client17b.com"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Ethan",
+      "role": "Account Manager",
+      "region": "South America",
+      "skills": [
+        "Sales Strategy",
+        "Data Analysis",
+        "Product Demos"
+      ],
+      "deals": [
+        {
+          "client": "Client18A",
+          "value": 110018,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client18B",
+          "value": 147852,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client18C",
+          "value": 95049,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client18A",
+          "industry": "FMCG",
+          "contact": "ethan@client18a.com"
+        },
+        {
+          "name": "Client18B",
+          "industry": "FMCG",
+          "contact": "contact@client18b.com"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Owen",
+      "role": "Field Sales",
+      "region": "North America",
+      "skills": [
+        "Sales Strategy",
+        "Presentation",
+        "Product Demos"
+      ],
+      "deals": [
+        {
+          "client": "Client19A",
+          "value": 43478,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client19B",
+          "value": 89286,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client19C",
+          "value": 89967,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client19A",
+          "industry": "Engineering",
+          "contact": "owen@client19a.com"
+        },
+        {
+          "name": "Client19B",
+          "industry": "Logistics",
+          "contact": "contact@client19b.com"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Levi",
+      "role": "Field Sales",
+      "region": "Australia",
+      "skills": [
+        "Customer Service",
+        "Sales Strategy",
+        "Strategic Partnerships"
+      ],
+      "deals": [
+        {
+          "client": "Client20A",
+          "value": 97174,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client20B",
+          "value": 50158,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client20C",
+          "value": 51149,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client20A",
+          "industry": "Logistics",
+          "contact": "levi@client20a.com"
+        },
+        {
+          "name": "Client20B",
+          "industry": "Consulting",
+          "contact": "contact@client20b.com"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Mason",
+      "role": "Enterprise Sales",
+      "region": "Europe",
+      "skills": [
+        "Presentation",
+        "Relationship Building",
+        "Lead Generation"
+      ],
+      "deals": [
+        {
+          "client": "Client21A",
+          "value": 112258,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client21B",
+          "value": 136091,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client21C",
+          "value": 126600,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client21A",
+          "industry": "Engineering",
+          "contact": "mason@client21a.com"
+        },
+        {
+          "name": "Client21B",
+          "industry": "Logistics",
+          "contact": "contact@client21b.com"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Matthew",
+      "role": "Territory Sales Lead",
+      "region": "Europe",
+      "skills": [
+        "Sales Strategy",
+        "Strategic Partnerships",
+        "Product Demos"
+      ],
+      "deals": [
+        {
+          "client": "Client22A",
+          "value": 101167,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client22B",
+          "value": 111926,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client22C",
+          "value": 45904,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client22A",
+          "industry": "Healthcare",
+          "contact": "matthew@client22a.com"
+        },
+        {
+          "name": "Client22B",
+          "industry": "Finance",
+          "contact": "contact@client22b.com"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Matthew",
+      "role": "Sales Representative",
+      "region": "Middle East",
+      "skills": [
+        "Lead Generation",
+        "Relationship Building",
+        "CRM"
+      ],
+      "deals": [
+        {
+          "client": "Client23A",
+          "value": 109693,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client23B",
+          "value": 147845,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client23C",
+          "value": 81729,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client23A",
+          "industry": "Logistics",
+          "contact": "matthew@client23a.com"
+        },
+        {
+          "name": "Client23B",
+          "industry": "Engineering",
+          "contact": "contact@client23b.com"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Lucas",
+      "role": "Field Sales",
+      "region": "India",
+      "skills": [
+        "Sales Strategy",
+        "Strategic Partnerships",
+        "Product Demos"
+      ],
+      "deals": [
+        {
+          "client": "Client24A",
+          "value": 141434,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client24B",
+          "value": 115519,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client24C",
+          "value": 129249,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client24A",
+          "industry": "Finance",
+          "contact": "lucas@client24a.com"
+        },
+        {
+          "name": "Client24B",
+          "industry": "Engineering",
+          "contact": "contact@client24b.com"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Ethan",
+      "role": "Territory Sales Lead",
+      "region": "India",
+      "skills": [
+        "Presentation",
+        "Sales Strategy",
+        "Strategic Partnerships"
+      ],
+      "deals": [
+        {
+          "client": "Client25A",
+          "value": 147612,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client25B",
+          "value": 108774,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client25C",
+          "value": 110089,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client25A",
+          "industry": "Logistics",
+          "contact": "ethan@client25a.com"
+        },
+        {
+          "name": "Client25B",
+          "industry": "Healthcare",
+          "contact": "contact@client25b.com"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "James",
+      "role": "Account Manager",
+      "region": "North America",
+      "skills": [
+        "Market Analysis",
+        "Relationship Building",
+        "Sales Strategy"
+      ],
+      "deals": [
+        {
+          "client": "Client26A",
+          "value": 86670,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client26B",
+          "value": 101084,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client26C",
+          "value": 48508,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client26A",
+          "industry": "Tech",
+          "contact": "james@client26a.com"
+        },
+        {
+          "name": "Client26B",
+          "industry": "Manufacturing",
+          "contact": "contact@client26b.com"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "William",
+      "role": "Enterprise Sales",
+      "region": "Europe",
+      "skills": [
+        "Strategic Partnerships",
+        "Sales Strategy",
+        "Lead Generation"
+      ],
+      "deals": [
+        {
+          "client": "Client27A",
+          "value": 70139,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client27B",
+          "value": 70985,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client27C",
+          "value": 47936,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client27A",
+          "industry": "Healthcare",
+          "contact": "william@client27a.com"
+        },
+        {
+          "name": "Client27B",
+          "industry": "Tech",
+          "contact": "contact@client27b.com"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Samuel",
+      "role": "Enterprise Sales",
+      "region": "North America",
+      "skills": [
+        "CRM",
+        "Data Analysis",
+        "Cold Calling"
+      ],
+      "deals": [
+        {
+          "client": "Client28A",
+          "value": 97303,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client28B",
+          "value": 70223,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client28C",
+          "value": 65065,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client28A",
+          "industry": "Tech",
+          "contact": "samuel@client28a.com"
+        },
+        {
+          "name": "Client28B",
+          "industry": "FMCG",
+          "contact": "contact@client28b.com"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "William",
+      "role": "Business Development Manager",
+      "region": "South America",
+      "skills": [
+        "Cold Calling",
+        "Product Demos",
+        "Negotiation"
+      ],
+      "deals": [
+        {
+          "client": "Client29A",
+          "value": 70638,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client29B",
+          "value": 78808,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client29C",
+          "value": 82934,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client29A",
+          "industry": "Healthcare",
+          "contact": "william@client29a.com"
+        },
+        {
+          "name": "Client29B",
+          "industry": "FMCG",
+          "contact": "contact@client29b.com"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Mateo",
+      "role": "Account Manager",
+      "region": "Africa",
+      "skills": [
+        "Strategic Partnerships",
+        "Cold Calling",
+        "Negotiation"
+      ],
+      "deals": [
+        {
+          "client": "Client30A",
+          "value": 41173,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client30B",
+          "value": 64899,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client30C",
+          "value": 63946,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client30A",
+          "industry": "Retail",
+          "contact": "mateo@client30a.com"
+        },
+        {
+          "name": "Client30B",
+          "industry": "Software",
+          "contact": "contact@client30b.com"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "William",
+      "role": "Customer Success Executive",
+      "region": "North America",
+      "skills": [
+        "Cold Calling",
+        "Lead Generation",
+        "Market Analysis"
+      ],
+      "deals": [
+        {
+          "client": "Client31A",
+          "value": 76529,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client31B",
+          "value": 132653,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client31C",
+          "value": 57051,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client31A",
+          "industry": "Healthcare",
+          "contact": "william@client31a.com"
+        },
+        {
+          "name": "Client31B",
+          "industry": "Consulting",
+          "contact": "contact@client31b.com"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Daniel",
+      "role": "Territory Sales Lead",
+      "region": "South America",
+      "skills": [
+        "Strategic Partnerships",
+        "Relationship Building",
+        "Lead Generation"
+      ],
+      "deals": [
+        {
+          "client": "Client32A",
+          "value": 104708,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client32B",
+          "value": 99104,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client32C",
+          "value": 104851,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client32A",
+          "industry": "Engineering",
+          "contact": "daniel@client32a.com"
+        },
+        {
+          "name": "Client32B",
+          "industry": "FMCG",
+          "contact": "contact@client32b.com"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Jacob",
+      "role": "Account Manager",
+      "region": "South America",
+      "skills": [
+        "Sales Strategy",
+        "Product Demos",
+        "Negotiation"
+      ],
+      "deals": [
+        {
+          "client": "Client33A",
+          "value": 114576,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client33B",
+          "value": 59413,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client33C",
+          "value": 149886,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client33A",
+          "industry": "Tech",
+          "contact": "jacob@client33a.com"
+        },
+        {
+          "name": "Client33B",
+          "industry": "Healthcare",
+          "contact": "contact@client33b.com"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Jack",
+      "role": "Customer Success Executive",
+      "region": "North America",
+      "skills": [
+        "Sales Strategy",
+        "Data Analysis",
+        "Cold Calling"
+      ],
+      "deals": [
+        {
+          "client": "Client34A",
+          "value": 90098,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client34B",
+          "value": 43655,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client34C",
+          "value": 68478,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client34A",
+          "industry": "Software",
+          "contact": "jack@client34a.com"
+        },
+        {
+          "name": "Client34B",
+          "industry": "Healthcare",
+          "contact": "contact@client34b.com"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Matthew",
+      "role": "Regional Account Executive",
+      "region": "North America",
+      "skills": [
+        "Customer Service",
+        "Lead Generation",
+        "Presentation"
+      ],
+      "deals": [
+        {
+          "client": "Client35A",
+          "value": 103498,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client35B",
+          "value": 99564,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client35C",
+          "value": 62456,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client35A",
+          "industry": "Healthcare",
+          "contact": "matthew@client35a.com"
+        },
+        {
+          "name": "Client35B",
+          "industry": "Healthcare",
+          "contact": "contact@client35b.com"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "James",
+      "role": "Sales Representative",
+      "region": "South America",
+      "skills": [
+        "Sales Strategy",
+        "Market Analysis",
+        "Relationship Building"
+      ],
+      "deals": [
+        {
+          "client": "Client36A",
+          "value": 47546,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client36B",
+          "value": 143082,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client36C",
+          "value": 44466,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client36A",
+          "industry": "Software",
+          "contact": "james@client36a.com"
+        },
+        {
+          "name": "Client36B",
+          "industry": "Manufacturing",
+          "contact": "contact@client36b.com"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Owen",
+      "role": "Business Development Manager",
+      "region": "Europe",
+      "skills": [
+        "Data Analysis",
+        "Cold Calling",
+        "Customer Service"
+      ],
+      "deals": [
+        {
+          "client": "Client37A",
+          "value": 133873,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client37B",
+          "value": 110151,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client37C",
+          "value": 74883,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client37A",
+          "industry": "Consulting",
+          "contact": "owen@client37a.com"
+        },
+        {
+          "name": "Client37B",
+          "industry": "Logistics",
+          "contact": "contact@client37b.com"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Wyatt",
+      "role": "Business Development Manager",
+      "region": "Middle East",
+      "skills": [
+        "Negotiation",
+        "Product Demos",
+        "Market Analysis"
+      ],
+      "deals": [
+        {
+          "client": "Client38A",
+          "value": 141290,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client38B",
+          "value": 45987,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client38C",
+          "value": 75398,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client38A",
+          "industry": "Tech",
+          "contact": "wyatt@client38a.com"
+        },
+        {
+          "name": "Client38B",
+          "industry": "Tech",
+          "contact": "contact@client38b.com"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Wyatt",
+      "role": "Account Manager",
+      "region": "North America",
+      "skills": [
+        "Cold Calling",
+        "Negotiation",
+        "Market Analysis"
+      ],
+      "deals": [
+        {
+          "client": "Client39A",
+          "value": 142892,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client39B",
+          "value": 43888,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client39C",
+          "value": 112776,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client39A",
+          "industry": "Software",
+          "contact": "wyatt@client39a.com"
+        },
+        {
+          "name": "Client39B",
+          "industry": "Tech",
+          "contact": "contact@client39b.com"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Alexander",
+      "role": "Business Development Manager",
+      "region": "India",
+      "skills": [
+        "Presentation",
+        "Customer Service",
+        "Data Analysis"
+      ],
+      "deals": [
+        {
+          "client": "Client40A",
+          "value": 77066,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client40B",
+          "value": 57548,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client40C",
+          "value": 122669,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client40A",
+          "industry": "Manufacturing",
+          "contact": "alexander@client40a.com"
+        },
+        {
+          "name": "Client40B",
+          "industry": "Manufacturing",
+          "contact": "contact@client40b.com"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Owen",
+      "role": "Customer Success Executive",
+      "region": "Middle East",
+      "skills": [
+        "Strategic Partnerships",
+        "Market Analysis",
+        "CRM"
+      ],
+      "deals": [
+        {
+          "client": "Client41A",
+          "value": 70334,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client41B",
+          "value": 46017,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client41C",
+          "value": 114190,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client41A",
+          "industry": "Software",
+          "contact": "owen@client41a.com"
+        },
+        {
+          "name": "Client41B",
+          "industry": "Consulting",
+          "contact": "contact@client41b.com"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Jacob",
+      "role": "Field Sales",
+      "region": "India",
+      "skills": [
+        "Negotiation",
+        "Strategic Partnerships",
+        "Relationship Building"
+      ],
+      "deals": [
+        {
+          "client": "Client42A",
+          "value": 53386,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client42B",
+          "value": 70108,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client42C",
+          "value": 149781,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client42A",
+          "industry": "Consulting",
+          "contact": "jacob@client42a.com"
+        },
+        {
+          "name": "Client42B",
+          "industry": "Retail",
+          "contact": "contact@client42b.com"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "name": "William",
+      "role": "Regional Account Executive",
+      "region": "Europe",
+      "skills": [
+        "Product Demos",
+        "Data Analysis",
+        "Market Analysis"
+      ],
+      "deals": [
+        {
+          "client": "Client43A",
+          "value": 48797,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client43B",
+          "value": 99658,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client43C",
+          "value": 48385,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client43A",
+          "industry": "Manufacturing",
+          "contact": "william@client43a.com"
+        },
+        {
+          "name": "Client43B",
+          "industry": "Healthcare",
+          "contact": "contact@client43b.com"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Levi",
+      "role": "Field Sales",
+      "region": "Asia-Pacific",
+      "skills": [
+        "Cold Calling",
+        "Sales Strategy",
+        "Market Analysis"
+      ],
+      "deals": [
+        {
+          "client": "Client44A",
+          "value": 147974,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client44B",
+          "value": 84953,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client44C",
+          "value": 98427,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client44A",
+          "industry": "Retail",
+          "contact": "levi@client44a.com"
+        },
+        {
+          "name": "Client44B",
+          "industry": "Logistics",
+          "contact": "contact@client44b.com"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Alexander",
+      "role": "Territory Sales Lead",
+      "region": "Europe",
+      "skills": [
+        "Negotiation",
+        "Market Analysis",
+        "Customer Service"
+      ],
+      "deals": [
+        {
+          "client": "Client45A",
+          "value": 147956,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client45B",
+          "value": 77835,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client45C",
+          "value": 57813,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client45A",
+          "industry": "Tech",
+          "contact": "alexander@client45a.com"
+        },
+        {
+          "name": "Client45B",
+          "industry": "Retail",
+          "contact": "contact@client45b.com"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Alexander",
+      "role": "Business Development Manager",
+      "region": "Europe",
+      "skills": [
+        "Strategic Partnerships",
+        "Cold Calling",
+        "Lead Generation"
+      ],
+      "deals": [
+        {
+          "client": "Client46A",
+          "value": 98380,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client46B",
+          "value": 46646,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client46C",
+          "value": 78019,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client46A",
+          "industry": "Tech",
+          "contact": "alexander@client46a.com"
+        },
+        {
+          "name": "Client46B",
+          "industry": "Logistics",
+          "contact": "contact@client46b.com"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Oliver",
+      "role": "Business Development Manager",
+      "region": "North America",
+      "skills": [
+        "CRM",
+        "Cold Calling",
+        "Strategic Partnerships"
+      ],
+      "deals": [
+        {
+          "client": "Client47A",
+          "value": 109999,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client47B",
+          "value": 62911,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client47C",
+          "value": 41587,
+          "status": "Closed Lost"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client47A",
+          "industry": "Software",
+          "contact": "oliver@client47a.com"
+        },
+        {
+          "name": "Client47B",
+          "industry": "FMCG",
+          "contact": "contact@client47b.com"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Wyatt",
+      "role": "Enterprise Sales",
+      "region": "Europe",
+      "skills": [
+        "Presentation",
+        "Market Analysis",
+        "Strategic Partnerships"
+      ],
+      "deals": [
+        {
+          "client": "Client48A",
+          "value": 145514,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client48B",
+          "value": 148013,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client48C",
+          "value": 133185,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client48A",
+          "industry": "Logistics",
+          "contact": "wyatt@client48a.com"
+        },
+        {
+          "name": "Client48B",
+          "industry": "Engineering",
+          "contact": "contact@client48b.com"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "name": "Michael",
+      "role": "Account Manager",
+      "region": "Africa",
+      "skills": [
+        "Lead Generation",
+        "Strategic Partnerships",
+        "Market Analysis"
+      ],
+      "deals": [
+        {
+          "client": "Client49A",
+          "value": 126372,
+          "status": "Closed Lost"
+        },
+        {
+          "client": "Client49B",
+          "value": 133232,
+          "status": "Closed Won"
+        },
+        {
+          "client": "Client49C",
+          "value": 128190,
+          "status": "Closed Won"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client49A",
+          "industry": "Healthcare",
+          "contact": "michael@client49a.com"
+        },
+        {
+          "name": "Client49B",
+          "industry": "FMCG",
+          "contact": "contact@client49b.com"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "name": "David",
+      "role": "Business Development Manager",
+      "region": "North America",
+      "skills": [
+        "Customer Service",
+        "Relationship Building",
+        "Presentation"
+      ],
+      "deals": [
+        {
+          "client": "Client50A",
+          "value": 81764,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client50B",
+          "value": 123958,
+          "status": "In Progress"
+        },
+        {
+          "client": "Client50C",
+          "value": 43981,
+          "status": "In Progress"
+        }
+      ],
+      "clients": [
+        {
+          "name": "Client50A",
+          "industry": "Logistics",
+          "contact": "david@client50a.com"
+        },
+        {
+          "name": "Client50B",
+          "industry": "Software",
+          "contact": "contact@client50b.com"
+        }
+      ]
+    }
+  ]
+}
