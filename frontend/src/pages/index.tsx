@@ -22,7 +22,8 @@ export default function Home() {
   const [region, setRegion] = useState("");
   const [role, setRole] = useState("");
   const [industry, setIndustry] = useState("");
-
+  const [sortBy, setSortBy] = useState<"name" | "region" | "role" | "">("");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
   const { filters, loading: loadingFilters } = useSalesRepsFilters();
 
@@ -33,6 +34,8 @@ export default function Home() {
     regions: region ? [region] : undefined,
     roles: role ? [role] : undefined,
     client_industries: industry ? [industry] : undefined,
+    sort_by: sortBy || undefined,
+    sort_order: sortOrder,
   });
 
   const handleAskQuestion = async () => {
@@ -140,6 +143,54 @@ export default function Home() {
               </MenuItem>
             ))}
           </TextField>
+
+          {/*  SORTING */}
+          <TextField
+            label="Sort By"
+            value={sortBy}
+            onChange={(e) => {
+              setSortBy(e.target.value as typeof sortBy);
+              setPage(1);
+            }}
+            select
+            fullWidth
+          >
+            <MenuItem value="">Default</MenuItem>
+            <MenuItem value="name">Name</MenuItem>
+            <MenuItem value="region">Region</MenuItem>
+            <MenuItem value="role">Role</MenuItem>
+          </TextField>
+
+          <TextField
+            label={`Sort Order${sortBy ? ` (${sortBy})` : ""}`}
+            value={sortOrder}
+            onChange={(e) => {
+              setSortOrder(e.target.value as typeof sortOrder);
+              setPage(1);
+            }}
+            select
+            fullWidth
+            disabled={!sortBy} // 👈 disable unless sort_by is selected
+          >
+            <MenuItem value="asc">Ascending (A → Z)</MenuItem>
+            <MenuItem value="desc">Descending (Z → A)</MenuItem>
+          </TextField>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => {
+              setRegion("");
+              setRole("");
+              setIndustry("");
+              setSearch("");
+              setSortBy("");
+              setSortOrder("asc");
+              setPage(1);
+            }}
+          >
+            Clear Filters
+          </Button>
+
         </Box>
         <TextField
           label="Search by name or skill"
