@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import { SalesRep } from "./types";
-import { fetchSalesReps } from "@/lib/api";
+import { fetchSalesReps, SalesRepsQuery } from "@/lib/api";
 
-export const useSalesReps = () => {
+export const useSalesReps = (queryParams: SalesRepsQuery = {}) => {
   const [salesReps, setSalesReps] = useState<SalesRep[]>([]);
   const [loading, setLoading] = useState(true);
+  const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
-    fetchSalesReps()
-      .then((data) => setSalesReps(data.salesReps || []))
+    setLoading(true);
+    fetchSalesReps(queryParams)
+      .then((data) => {
+        setSalesReps(data.salesReps || []);
+        setTotal(data.meta.total || 0);
+      })
       .catch(console.error)
       .finally(() => setLoading(false));
-  }, []);
+  }, [JSON.stringify(queryParams)]); // re-run on param change
 
-  return { salesReps, loading };
+  return { salesReps, total, loading };
 };

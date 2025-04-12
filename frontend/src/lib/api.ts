@@ -20,19 +20,42 @@ export interface SalesRep {
   clients: Client[];
 }
 
+export interface SalesRepsQuery {
+  page?: number;
+  page_size?: number;
+  sort_by?: "name" | "region" | "role";
+  sort_order?: "asc" | "desc";
+  regions?: string[];
+  roles?: string[];
+  client_industries?: string[];
+  search_term?: string;
+}
+
 export interface SalesRepsResponse {
   salesReps: SalesRep[];
+  meta: {
+    total: number;
+    page: number;
+    page_size: number;
+  };
 }
 
 export interface AIResponse {
   answer: string;
 }
 
-export const fetchSalesReps = async (): Promise<SalesRepsResponse> => {
-  const res = await fetch("http://localhost:8000/api/sales-reps");
-  if (!res.ok) {
-    throw new Error("Failed to fetch sales reps");
-  }
+export const fetchSalesReps = async (params: SalesRepsQuery = {}): Promise<SalesRepsResponse> => {
+  const url = new URL("http://localhost:8000/api/sales-reps");
+  Object.entries(params).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((v) => url.searchParams.append(key, v));
+    } else if (value !== undefined) {
+      url.searchParams.set(key, value.toString());
+    }
+  });
+
+  const res = await fetch(url.toString());
+  if (!res.ok) throw new Error("Failed to fetch sales reps");
   return res.json();
 };
 
