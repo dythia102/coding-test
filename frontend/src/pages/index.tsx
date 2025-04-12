@@ -3,7 +3,7 @@ import { askAI } from "@/lib/api";
 import { useSalesReps, useSalesRepsFilters } from "@/features/salesReps/useSalesReps";
 import SalesRepList from "@/components/SalesRepList";
 import { Pagination, MenuItem } from "@mui/material";
-
+import { useDebounce } from "@/hooks/useDebounce";
 import {
   Box,
   Button,
@@ -27,8 +27,10 @@ export default function Home() {
 
   const { filters, loading: loadingFilters } = useSalesRepsFilters();
 
+  const debouncedSearch = useDebounce(search);
+
   const { salesReps, loading, total } = useSalesReps({
-    search_term: search,
+    search_term: debouncedSearch,
     page,
     page_size: 5,
     regions: region ? [region] : undefined,
@@ -37,6 +39,7 @@ export default function Home() {
     sort_by: sortBy || undefined,
     sort_order: sortOrder,
   });
+
 
   const handleAskQuestion = async () => {
     try {
@@ -207,10 +210,22 @@ export default function Home() {
           <Box display="flex" justifyContent="center" py={4}>
             <CircularProgress />
           </Box>
+        ) : salesReps.length === 0 ? (
+          <Box textAlign="center" py={4}>
+            <Typography variant="h6" gutterBottom>
+              No results found
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Try adjusting your filters or search term.
+            </Typography>
+          </Box>
         ) : (
           <>
-            <SalesRepList reps={salesReps} />
+            <Typography variant="subtitle1" color="text.secondary" mb={1}>
+              {total} {total === 1 ? "result" : "results"} found
+            </Typography>
 
+            <SalesRepList reps={salesReps} />
             <Box display="flex" justifyContent="center" mt={2}>
               <Pagination
                 count={Math.ceil(total / 5)}
@@ -221,6 +236,7 @@ export default function Home() {
             </Box>
           </>
         )}
+
       </Paper>
     </Container>
   );
