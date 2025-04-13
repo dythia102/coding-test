@@ -2,6 +2,17 @@ import { useEffect, useState } from "react";
 import { SalesRep } from "./types";
 import { fetchSalesReps, SalesRepsQuery } from "@/lib/api";
 
+export interface SalesRepFilterOptions {
+  regions: string[];
+  roles: string[];
+  industries: string[];
+}
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+/**
+ * Custom hook to fetch filtered & paginated sales reps
+ */
 export const useSalesReps = (queryParams: SalesRepsQuery = {}) => {
   const [salesReps, setSalesReps] = useState<SalesRep[]>([]);
   const [loading, setLoading] = useState(true);
@@ -16,17 +27,14 @@ export const useSalesReps = (queryParams: SalesRepsQuery = {}) => {
       })
       .catch(console.error)
       .finally(() => setLoading(false));
-  }, [JSON.stringify(queryParams)]); // re-run on param change
+  }, [JSON.stringify(queryParams)]); // re-run when query params change
 
   return { salesReps, total, loading };
 };
 
-export interface SalesRepFilterOptions {
-  regions: string[];
-  roles: string[];
-  industries: string[];
-}
-
+/**
+ * Custom hook to load available filter options (regions, roles, industries)
+ */
 export const useSalesRepsFilters = () => {
   const [filters, setFilters] = useState<SalesRepFilterOptions>({
     regions: [],
@@ -37,7 +45,7 @@ export const useSalesRepsFilters = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/sales-reps/filters")
+    fetch(`${API_BASE}/api/sales-reps/filters`)
       .then((res) => res.json())
       .then(setFilters)
       .catch(console.error)
