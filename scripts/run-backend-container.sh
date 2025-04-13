@@ -1,4 +1,5 @@
 #!/bin/bash
+# echo run this from root git folder
 
 docker run -it --rm \
   -v "$PWD/backend:/app" \

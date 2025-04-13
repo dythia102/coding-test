@@ -19,3 +19,8 @@
     - Test coverage with pytest, ready to automate
 - add new api /api/sales-reps/filters
 - Add Langchain Integration to analyze dummyData.json
+
+14 April 2005
+- clean up code
+- create development script
+- prepare for production

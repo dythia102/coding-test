@@ -1,6 +1,6 @@
 #!/bin/bash
+# echo run this from root git folder
 
 docker run -it -p 3000:3000 \
-    -v "./frontend:/app" \
-    -v "./run-dev-fe.sh":/app/run-dev-fe.sh \
+    -v "$PWD/backend:/app" \
     -w /app node:18-alpine sh 
