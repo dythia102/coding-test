@@ -1,4 +1,3 @@
-# api/exception_handlers.py
 from fastapi import Request, FastAPI
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -15,6 +14,11 @@ def add_exception_handlers(app: FastAPI) -> None:
 
     @app.exception_handler(StarletteHTTPException)
     async def http_exception_handler(request: Request, exc: StarletteHTTPException) -> JSONResponse:
+        if exc.status_code == 404:
+            return JSONResponse(
+                status_code=404,
+                content={"detail": exc.detail or "Not found."}
+            )
         return JSONResponse(
             status_code=exc.status_code,
             content={"detail": "An error occurred."}
