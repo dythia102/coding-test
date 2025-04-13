@@ -18,9 +18,12 @@
     - Clean OpenAPI docs and Swagger UI
     - Test coverage with pytest, ready to automate
 - add new api /api/sales-reps/filters
+- add new api /api/sales-reps/stats
+- add new api /api/sales-reps/{id}
 - Add Langchain Integration to analyze dummyData.json
 
 14 April 2005
 - clean up code
 - create development script
 - prepare for production
+- add new api api/ai/info
