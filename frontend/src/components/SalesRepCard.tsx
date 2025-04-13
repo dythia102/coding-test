@@ -13,19 +13,34 @@ import { SalesRep } from "@/features/salesReps/types";
 
 interface Props {
   rep: SalesRep;
-  maxValue: number;
+  totalValue: number;
+  contribution: number;
+  isTopRep: boolean;
+  avgDiff: number;
 }
 
-const SalesRepCard = memo(function SalesRepCard({ rep, maxValue }: Props) {
-  // TODO: Need BE enhancement get total deal from be
-  const totalValue = rep.deals.reduce((sum, deal) => sum + deal.value, 0);
-  const progress = maxValue > 0 ? (totalValue / maxValue) * 100 : 0;
 
+const SalesRepCard = memo(function SalesRepCard({
+  rep,
+  totalValue,
+  contribution,
+  isTopRep,
+  avgDiff,
+}: Props) {
   return (
     <Card variant="outlined" sx={{ mb: 2 }}>
       <CardContent>
+
         <Typography variant="h6" component="div" gutterBottom>
           {rep.name}
+          {isTopRep && (
+            <Chip
+              label="Top Rep"
+              color="success"
+              size="small"
+              sx={{ ml: 1, fontWeight: "bold" }}
+            />
+          )}
         </Typography>
 
         <Typography color="text.secondary">
@@ -45,25 +60,24 @@ const SalesRepCard = memo(function SalesRepCard({ rep, maxValue }: Props) {
 
         <Divider sx={{ my: 1.5 }} />
 
-        <Typography variant="body2" fontWeight={500} sx={{ mb: 0.5 }}>
-          Sales Contribution (% of total)
-        </Typography>
-
-
-
-        <Box display="flex" alignItems="center" gap={2} sx={{ mb: 2 }}>
-          <LinearProgress
-            variant="determinate"
-            value={progress}
-            sx={{ height: 8, borderRadius: 4, flexGrow: 1 }}
-          />
-          <Typography variant="body2" sx={{ minWidth: 40 }}>
-            {Math.round(progress)}%
-          </Typography>
-        </Box>
+        <Chip
+          label={`${Math.round(contribution)}% of total sales contribution`}
+          color="primary"
+          size="small"
+          sx={{ fontWeight: 500, my: 1 }}
+        />
 
         <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-          ${totalValue.toLocaleString()}
+          ${totalValue.toLocaleString()} Sales
+        </Typography>
+
+        <Typography
+          variant="caption"
+          color={avgDiff >= 0 ? "success.main" : "error.main"}
+          sx={{ fontWeight: 500 }}
+        >
+          {avgDiff >= 0 ? "+" : ""}
+          {avgDiff.toFixed(1)}% {avgDiff >= 0 ? "above" : "below"} avg
         </Typography>
 
 

@@ -14,8 +14,10 @@ import {
   CircularProgress,
   Paper
 } from "@mui/material";
-import { useScrollDirection } from "@/hooks/useScrollDirection";
-import { Collapse } from "@mui/material";
+import { fetchSalesStats, SalesStats } from "@/lib/api";
+import { useEffect } from "react";
+import TopRepsChart from "@/components/TopRepsChart";
+import SalesSummary from "@/components/SalesSummary";
 
 export default function Home() {
   const [question, setQuestion] = useState("");
@@ -27,8 +29,9 @@ export default function Home() {
   const [industry, setIndustry] = useState("");
   const [sortBy, setSortBy] = useState<"name" | "region" | "role" | "">("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-  const scrollDirection = useScrollDirection();
-  const isFilterCollapsed = scrollDirection === "down";
+  const [stats, setStats] = useState<SalesStats | null>(null);
+  const [showFilters, setShowFilters] = useState(false);
+
 
   const { filters, loading: loadingFilters } = useSalesRepsFilters();
 
@@ -44,6 +47,12 @@ export default function Home() {
     sort_by: sortBy || undefined,
     sort_order: sortOrder,
   });
+
+  useEffect(() => {
+    fetchSalesStats()
+      .then(setStats)
+      .catch(console.error);
+  }, []);
 
 
   const handleAskQuestion = async () => {
@@ -89,19 +98,29 @@ export default function Home() {
         )}
       </Paper>
 
-      <Collapse in={!isFilterCollapsed}>
+      {stats && <SalesSummary stats={stats} />}
+
+      {stats?.top_5_reps && stats.top_5_reps.length > 0 && (
+        <TopRepsChart reps={stats.top_5_reps} />
+      )}
+
+      <Button
+        variant="outlined"
+        onClick={() => setShowFilters((prev) => !prev)}
+        sx={{ mb: 2 }}
+      >
+        {showFilters ? "Hide Filters" : "Show Filters"}
+      </Button>
+
+      {showFilters && (
         <Paper
           elevation={3}
           sx={{
-            position: "sticky",
-            top: 0,
-            zIndex: 1000,
             backgroundColor: "background.paper",
             p: 2,
             mb: 4,
             borderBottom: "1px solid",
             borderColor: "divider",
-            transition: "all 0.2s ease-in-out",
           }}
         >
           <SalesRepFilters
@@ -147,26 +166,24 @@ export default function Home() {
               setPage(1);
             }}
           />
-
-
-          <TextField
-            label="Search by name or skill"
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setPage(1);
-            }}
-            fullWidth
-            margin="normal"
-          />
         </Paper>
-      </Collapse>
+      )}
 
 
       <Paper elevation={2} sx={{ p: 2, mb: 4 }}>
         <Typography variant="h5" gutterBottom>
           Sales Representatives
         </Typography>
+        <TextField
+          label="Search by name or skill"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
+          fullWidth
+          margin="normal"
+        />
         {loading ? (
           <Box display="flex" justifyContent="center" py={4}>
             <CircularProgress />
@@ -186,7 +203,13 @@ export default function Home() {
               {total} {total === 1 ? "result" : "results"} found
             </Typography>
 
-            <SalesRepList reps={salesReps} />
+            <SalesRepList
+              reps={salesReps}
+              totalSales={stats?.total_sales_value || 0}
+              average={stats?.average_sales_per_rep || 0}
+              topRepId={stats?.top_rep?.id ?? null}
+            />
+
             <Paper
               elevation={3}
               sx={{
@@ -216,7 +239,6 @@ export default function Home() {
 
           </>
         )}
-
       </Paper>
     </Container>
   );

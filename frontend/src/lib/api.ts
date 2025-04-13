@@ -70,3 +70,26 @@ export const askAI = async (question: string): Promise<AIResponse> => {
   }
   return res.json();
 };
+
+export interface SalesStats {
+  total_sales_value: number;
+  average_sales_per_rep: number;
+  top_rep: {
+    id: number;
+    name: string;
+    total_sales: number;
+  } | null;
+  top_5_reps: {
+    id: number;
+    name: string;
+    total_sales: number;
+  }[];
+}
+
+export const fetchSalesStats = async (): Promise<SalesStats> => {
+  const res = await fetch("http://localhost:8000/api/sales-reps/stats");
+  if (!res.ok) {
+    throw new Error("Failed to fetch sales stats");
+  }
+  return res.json();
+};
