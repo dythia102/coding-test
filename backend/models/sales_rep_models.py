@@ -40,3 +40,14 @@ class SalesRepsFilter(BaseModel):
     client_names: Optional[List[str]] = None
     client_industries: Optional[List[str]] = None
     search_term: Optional[str] = None
+    
+class TopRepStat(BaseModel):
+    id: int
+    name: str
+    total_sales: int
+
+class SalesStatsResponse(BaseModel):
+    total_sales_value: int
+    average_sales_per_rep: float
+    top_rep: Optional[TopRepStat]
+    top_5_reps: List[TopRepStat]

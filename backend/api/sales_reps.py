@@ -1,15 +1,19 @@
 from fastapi import APIRouter, Query, Depends
 from models.sales_rep_models import SalesRepsResponse, SalesRepsFilter
-from fastapi.openapi.models import Example
+from models.sales_rep_models import SalesStatsResponse, TopRepStat
 from typing import Dict, List, Optional
-
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from models.sales_rep_models import SalesRep
 import json
-
 import time
 
 FILTER_CACHE = None
 FILTER_CACHE_TTL = 300  # seconds
 FILTER_CACHE_TIMESTAMP = 0
+
+STATS_CACHE = None
+STATS_CACHE_TTL = 300  # seconds
+STATS_CACHE_TIMESTAMP = 0
 
 router = APIRouter()
 
@@ -29,7 +33,7 @@ async def get_data(
     sort_by: Optional[str] = Query(None, description="Sort field (name, region, role)"),
     sort_order: str = Query("asc", pattern="^(asc|desc)$", description="Sort order: asc or desc"),
     regions: Optional[List[str]] = Query(None, description="Filter by one or more regions"),
-    roles: Optional[List[str]] = Query(None, description="Filter by one or more roles"),  # <-- NEW
+    roles: Optional[List[str]] = Query(None, description="Filter by one or more roles"),  
     client_names: Optional[List[str]] = Query(None, description="Filter by one or more client names"),
     client_industries: Optional[List[str]] = Query(None, description="Filter by one or more industries"),
     search_term: Optional[str] = Query(None, description="Search in name or skills (case-insensitive)")
@@ -133,3 +137,56 @@ async def get_filter_options():
     FILTER_CACHE_TIMESTAMP = current_time
 
     return FILTER_CACHE
+
+@router.get(
+    "/sales-reps/stats",
+    response_model=SalesStatsResponse,
+    summary="Sales Stats Summary",
+    description="Returns summary statistics about sales reps and their deal performance."
+)
+async def get_sales_stats() -> SalesStatsResponse:
+    global STATS_CACHE, STATS_CACHE_TIMESTAMP
+
+    current_time = time.time()
+    if STATS_CACHE and (current_time - STATS_CACHE_TIMESTAMP) < STATS_CACHE_TTL:
+        return STATS_CACHE
+
+    data = DUMMY_DATA["salesReps"]
+    stats = []
+    total_sales = 0
+
+    for rep in data:
+        total = sum(deal["value"] for deal in rep.get("deals", []))
+        stats.append({
+            "id": rep["id"],
+            "name": rep["name"],
+            "total_sales": total
+        })
+        total_sales += total
+
+    stats.sort(key=lambda x: x["total_sales"], reverse=True)
+
+    result = SalesStatsResponse(
+        total_sales_value=total_sales,
+        average_sales_per_rep=round(total_sales / len(stats), 2) if stats else 0,
+        top_rep=TopRepStat(**stats[0]) if stats else None,
+        top_5_reps=[TopRepStat(**rep) for rep in stats[:5]]
+    )
+
+    STATS_CACHE = result
+    STATS_CACHE_TIMESTAMP = current_time
+
+    return result
+
+@router.get(
+    "/sales-reps/{id}",
+    response_model=SalesRep,
+    summary="Get Sales Rep by ID",
+    description="Returns a single sales rep by ID from dummy data."
+)
+async def get_sales_rep_by_id(id: int) -> SalesRep:
+    for rep in DUMMY_DATA["salesReps"]:
+        if rep["id"] == id:
+            return SalesRep(**rep)
+
+    raise StarletteHTTPException(status_code=404, detail="Sales rep not found")
