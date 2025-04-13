@@ -16,6 +16,9 @@ import {
 } from "@mui/material";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { Collapse } from "@mui/material";
+import { fetchSalesStats, SalesStats } from "@/lib/api";
+import { useEffect } from "react";
+import TopRepsChart from "@/components/TopRepsChart";
 
 export default function Home() {
   const [question, setQuestion] = useState("");
@@ -29,6 +32,7 @@ export default function Home() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const scrollDirection = useScrollDirection();
   const isFilterCollapsed = scrollDirection === "down";
+  const [stats, setStats] = useState<SalesStats | null>(null);
 
   const { filters, loading: loadingFilters } = useSalesRepsFilters();
 
@@ -44,6 +48,12 @@ export default function Home() {
     sort_by: sortBy || undefined,
     sort_order: sortOrder,
   });
+
+  useEffect(() => {
+    fetchSalesStats()
+      .then(setStats)
+      .catch(console.error);
+  }, []);
 
 
   const handleAskQuestion = async () => {
@@ -186,7 +196,18 @@ export default function Home() {
               {total} {total === 1 ? "result" : "results"} found
             </Typography>
 
-            <SalesRepList reps={salesReps} />
+            {stats?.top_5_reps && stats.top_5_reps.length > 0 && (
+              <TopRepsChart reps={stats.top_5_reps} />
+            )}
+
+
+            <SalesRepList
+              reps={salesReps}
+              totalSales={stats?.total_sales_value || 0}
+              average={stats?.average_sales_per_rep || 0}
+              topRepId={stats?.top_rep?.id ?? null}
+            />
+
             <Paper
               elevation={3}
               sx={{
