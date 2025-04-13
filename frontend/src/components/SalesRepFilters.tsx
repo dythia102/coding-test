@@ -123,14 +123,6 @@ export default function SalesRepFilters({
                     Clear Filters
                 </Button>
             </Box>
-
-            <TextField
-                label="Search by name or skill"
-                value={search}
-                onChange={(e) => onSearchChange(e.target.value)}
-                fullWidth
-                margin="normal"
-            />
         </>
     );
 }
