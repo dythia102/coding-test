@@ -1,8 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
-# Pydantic models
 class AIRequest(BaseModel):
-    question: str
+    question: str = Field(..., example="Which region has the highest sales?")
 
 class AIResponse(BaseModel):
-    answer: str
+    answer: str = Field(..., example="The West region has the highest total sales at $320,000.")
