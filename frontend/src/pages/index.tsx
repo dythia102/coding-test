@@ -31,6 +31,8 @@ export default function Home() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [stats, setStats] = useState<SalesStats | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [aiLoading, setAiLoading] = useState(false);
+
 
 
   const { filters, loading: loadingFilters } = useSalesRepsFilters();
@@ -56,13 +58,18 @@ export default function Home() {
 
 
   const handleAskQuestion = async () => {
+    setAiLoading(true);
     try {
       const data = await askAI(question);
       setAnswer(data.answer);
     } catch (error) {
       console.error("AI request error:", error);
+      setAnswer("AI is currently unavailable.");
+    } finally {
+      setAiLoading(false);
     }
   };
+
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
@@ -88,7 +95,12 @@ export default function Home() {
           </Button>
         </Box>
 
-        {answer && (
+        {aiLoading ? (
+          <Box display="flex" justifyContent="center" alignItems="center" py={3}>
+            <CircularProgress size={28} />
+            <Typography sx={{ ml: 2 }}>Thinking...</Typography>
+          </Box>
+        ) : answer && (
           <Paper elevation={1} sx={{ mt: 3, p: 2 }}>
             <Typography variant="subtitle1" color="text.secondary">
               AI Response:
@@ -96,6 +108,7 @@ export default function Home() {
             <Typography>{answer}</Typography>
           </Paper>
         )}
+
       </Paper>
 
       {stats && <SalesSummary stats={stats} />}

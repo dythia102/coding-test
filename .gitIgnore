@@ -56,3 +56,5 @@ Thumbs.db
 
 # Ignore runtime files
 **/*.log
+
+.env.dev
