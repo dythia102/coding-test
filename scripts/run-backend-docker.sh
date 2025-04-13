@@ -8,5 +8,5 @@ docker run -it --rm \
     apk add --no-cache gcc musl-dev libffi-dev python3-dev && \
     pip install --upgrade pip && \
     pip install -r requirements.txt && \
-    uvicorn main:app --host 0.0.0.0 --port 8000
+    uvicorn main:app --host 0.0.0.0 --port 8000 --reload
   "
