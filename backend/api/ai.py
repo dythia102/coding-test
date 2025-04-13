@@ -3,6 +3,7 @@ from models.ai_models import AIRequest, AIResponse
 from services.ai_service import generate_response
 from services.langchain_service import answer_question
 import os
+from config import AI_CONFIG
 
 USE_AI = os.getenv("USE_AI", "false").lower() == "true"
 
@@ -41,3 +42,9 @@ async def ask_ai(request: AIRequest) -> AIResponse:
     answer = await answer_question(request.question)
     return AIResponse(answer=answer)
     
+@router.get("/ai/info", tags=["AI Info"])
+def get_ai_config():
+    return {
+        "model": AI_CONFIG["model"],
+        "provider": AI_CONFIG["provider"]
+    }
