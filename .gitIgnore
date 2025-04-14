@@ -19,10 +19,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# misc
-backend/dummyData.json
-
-
 # Node modules
 **/node_modules/
 
@@ -59,3 +55,5 @@ Thumbs.db
 
 .env.dev
 .env.local
+
+ngrok.yml
