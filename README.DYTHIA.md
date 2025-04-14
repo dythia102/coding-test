@@ -1,7 +1,5 @@
-============================================
-Coding Challenge: 
-Sales Dashboard with Next.js & FastAPI
-============================================
+# Coding Challenge: 
+## Sales Dashboard with Next.js & FastAPI
 
 Overview:
 ---------
@@ -20,9 +18,8 @@ Tech Stack:
 - AI MODEL: mistralai/mixtral-8x7b-instruct
 - Containerization: Docker (with provided scripts for development)
 
-=============================================
-Getting Started:
-=============================================
+# ------------------------------
+# Getting Started:
 
 Prerequisites:
 - Docker installed on your machine.
@@ -44,9 +41,12 @@ Setup Instructions:
 
 4. Access the Application:
    - Frontend: http://localhost:3000
-   - Backend API Docs: http://localhost:8000/docs or http://localhost:8000/redoc
+   - Backend API Docs: http://localhost:8000/docs or
+   - http://localhost:8000/redoc
    - Backend API: http://localhost:8000/api/sales-reps
 
+5. Deploy using ngrok
+   - docker compose -f docker-compose.ngrok.yml up -d
 =============================================
 AI Feature - API Key Setup Manual 
 ================
