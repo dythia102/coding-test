@@ -1,0 +1,42 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sales-backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+      - ./backend/.env:/app/.env
+    ports:
+      - "8000:8000"
+    environment:
+      APP_TITLE: "Sales AI (Dev)"
+      APP_DESCRIPTION: "Sales Rep Intelligence API"
+      APP_VERSION: "1.0.0"
+      AI_PROVIDER: "openrouter"
+      AI_MODEL: "mistralai/mixtral-8x7b-instruct"
+      AI_API_BASE: "https://openrouter.ai/api/v1"
+      USE_AI: "true"
+      FRONTEND_URL: "http://localhost:3000"
+    command: >
+      sh -c "
+        uvicorn main:app --host 0.0.0.0 --port 8000
+      "
+  frontend:
+    image: node:18-alpine
+    container_name: sales-frontend
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - ./frontend/.env:/app/.env
+      - ./scripts/run-wait-ngrok.sh:/app/run-wait-ngrok.sh
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8000"
+    command: >
+      sh -c "
+        npm install && \
+        npm run dev
+      "

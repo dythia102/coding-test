@@ -1,10 +1,11 @@
 version: 2
 authtoken: YOUR_NGROK_TOKEN
-
+web_addr: 0.0.0.0:4040  # explicitly bind the web interface
 tunnels:
   backend:
     proto: http
-    addr: 8000
+    addr: http://sales-backend:8000
   frontend:
     proto: http
-    addr: 3000
+    addr: http://sales-frontend:3000
+

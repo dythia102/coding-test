@@ -1,5 +1,7 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, FastAPI
 from config import GIT_SHA, APP_METADATA, ENV
+import os
+
 
 router = APIRouter()
 

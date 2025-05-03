@@ -61,12 +61,6 @@ Setup Instructions:
    - adjust NEXT_PUBLIC_API_URL (in frontend/.env.local)
    - adjust FRONTEND_URL (in backend/.env)
 
-6. my ngrok url:
-   - BE: https://c5ae-114-10-42-183.ngrok-free.app/docs
-   - FE: https://98bc-114-10-42-183.ngrok-free.app/
-
-
-
 # AI Feature - API Key Setup Manual 
 This guide explains how to set up the API key required
 to enable the AI feature in the backend (FastAPI).

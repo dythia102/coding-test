@@ -1,0 +1,57 @@
+services:
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok
+    restart: unless-stopped
+    volumes:
+      - ./ngrok.yml:/etc/ngrok.yml
+    command: start --all --config /etc/ngrok.yml
+    ports:
+      - "4040:4040"
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sales-backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+      - ./backend/.env:/app/.env
+      - ./scripts/run-wait-ngrok.sh:/app/run-wait-ngrok.sh
+    ports:
+      - "8000:8000"
+    environment:
+      APP_TITLE: "Sales AI (Dev)"
+      APP_DESCRIPTION: "Sales Rep Intelligence API"
+      APP_VERSION: "1.0.0"
+      AI_PROVIDER: "openrouter"
+      AI_MODEL: "mistralai/mixtral-8x7b-instruct"
+      AI_API_BASE: "https://openrouter.ai/api/v1"
+      USE_AI: "true"
+    command: >
+      sh -c "
+        apk add --no-cache curl jq && \
+        chmod +x /app/run-wait-ngrok.sh && \
+        /app/run-wait-ngrok.sh && \
+        export $(cat /app/.ngrok.env | xargs) && \
+        uvicorn main:app --host 0.0.0.0 --port 8000
+      "
+  frontend:
+    image: node:18-alpine
+    container_name: sales-frontend
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - ./frontend/.env:/app/.env
+      - ./scripts/run-wait-ngrok.sh:/app/run-wait-ngrok.sh
+    command: >
+      sh -c "
+        apk add --no-cache curl jq && \
+        chmod +x /app/run-wait-ngrok.sh && \
+        /app/run-wait-ngrok.sh && \
+        cat /app/.ngrok.env > /app/.env && \
+        npm install && \
+        npm run dev
+      "
