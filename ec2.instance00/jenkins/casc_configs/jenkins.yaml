@@ -5,7 +5,6 @@ jenkins:
       users:
         - id: ${ADMIN_USER}
           password: ${ADMIN_PASSWORD}
-
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
@@ -13,37 +12,8 @@ jenkins:
 unclassified:
   location:
     url: http://52.74.52.230:8080/
-
-jobs:
-  - script: >
-      pipelineJob('docker-info-prod-hook') {
-        description('Triggered by GitHub Webhook on push to production branch')
-        definition {
-          cpsScm {
-            scm {
-              git {
-                remote {
-                  github('dythia102/coding-test', 'https')
-                }
-                branches('*/production')
-              }
-            }
-            scriptPath('Jenkinsfile')
-          }
-        }
-        properties {
-          githubProjectUrl('https://github.com/dythia102/coding-test')
-        }
-        triggers {
-          githubPush()
-        }
-      }
-
-tool:
-  git:
-    installations:
-      - name: "Default"
-        home: "/usr/bin/git"
+  github:
+    hookUrl: http://52.74.52.230:8080/github-webhook/
 
 credentials:
   system:
@@ -55,3 +25,36 @@ credentials:
               password: "${GITHUB_TOKEN}"
               description: "GitHub PAT for webhook/pipeline access"
 
+jobs:
+  - script: >
+      organizationFolder('coding-test-org') {
+        description('GitHub repo for automated Docker info retrieval')
+        displayName('Coding Test Org')
+
+        organizations {
+          github {
+            repoOwner('dythia102')
+            credentialsId('github-credentials')
+            apiUri('https://api.github.com')
+          }
+        }
+
+        projectFactories {
+          workflowMultiBranchProjectFactory {
+            scriptPath('Jenkinsfile')
+          }
+        }
+
+        triggers {
+          periodicFolderTrigger {
+            interval('1d')
+          }
+        }
+
+        orphanedItemStrategy {
+          discardOldItems {
+            daysToKeep(7)
+            numToKeep(10)
+          }
+        }
+      }
