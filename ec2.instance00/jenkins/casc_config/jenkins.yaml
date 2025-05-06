@@ -1,0 +1,39 @@
+jenkins:
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: ${ADMIN_USER}
+          password: ${ADMIN_PASSWORD}
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+  jobs:
+    - script: >
+        pipelineJob('docker-info') {
+          definition {
+            cps {
+              script("""
+              pipeline {
+                agent any
+                triggers {
+                  githubPush()
+                }
+                stages {
+                  stage('Docker Info') {
+                    steps {
+                      sh 'docker info'
+                    }
+                  }
+                }
+              }
+              """.stripIndent())
+              sandbox()
+            }
+          }
+        }
+
+unclassified:
+  location:
+    url: http://localhost:8080/
