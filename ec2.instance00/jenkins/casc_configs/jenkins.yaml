@@ -22,22 +22,22 @@ jobs:
         }
       }
   - script: >
-      pipelineJob('docker-info-prod-hook') {
-        definition {
-          cpsScm {
-            scm {
-              git {
-                remote {
-                  url('https://github.com/dythia102/coding-test.git')
+        pipelineJob('docker-info-prod-hook') {
+          definition {
+            cpsScm {
+              scm {
+                git {
+                  remote {
+                    url('https://github.com/dythia102/coding-test.git')
+                  }
+                  branches('*/production')
                 }
-                branches('*/production')
               }
+              scriptPath('Jenkinsfile') // Or use inline script instead
             }
-            scriptPath('Jenkinsfile') // optional if you want an inline script instead
+          }
+          triggers {
+            githubPush()
           }
         }
-        triggers {
-          githubPush()
-        }
-      }
 
