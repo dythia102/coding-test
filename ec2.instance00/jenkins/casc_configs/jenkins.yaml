@@ -1,50 +1,59 @@
-jenkins:
-  systemMessage: "Jenkins Configured via CASC"
-  securityRealm:
-    local:
-      allowsSignup: false
-      users:
-        - id: "${ADMIN_USER}"
-          password: "${ADMIN_PASSWORD}"
-  authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
-  crumbIssuer:
-    standard:
-      excludeClientIPFromCrumb: false
 unclassified:
-  gitHubPluginConfig:
-    hookUrl: "http://52.74.52.230:8080/github-webhook/"
+  globalConfigFiles:
     configs:
-      - name: "github"
-        apiUrl: "https://api.github.com"
-        credentialsId: "github-pat"
+      - id: "global-maven-settings"
+        name: "global-maven-settings"
+        comment: "Global Maven settings"
+        content: ""
+  gitSCM:
+    globalConfigName: "dythia102"
+    globalConfigEmail: "dythia102@example.com"
 credentials:
   system:
     domainCredentials:
       - credentials:
-          - string:
+          - usernamePassword:
               scope: GLOBAL
-              id: "github-pat"
-              description: "GitHub Personal Access Token"
-              secret: "${GITHUB_PAT}"
+              id: github-token
+              username: dythia102
+              password: ${GITHUB_TOKEN}
+              description: GitHub Personal Access Token
 jobs:
-  - script: |
-      job('Seed-Job') {
-        description('Seed job to create other jobs using Job DSL')
+  - script: >
+      freestyleJob('Manual_Docker_Info') {
+        description('Manual job to execute docker info')
+        logRotator {
+          numToKeep(10)
+        }
+        steps {
+          shell('docker info')
+        }
+      }
+  - script: >
+      freestyleJob('GitHub_Webhook_Docker_Info') {
+        description('Job to execute docker info triggered by GitHub webhook')
+        logRotator {
+          numToKeep(10)
+        }
+        properties {
+          githubProjectProperty {
+            projectUrl('https://github.com/dythia102/coding-test/')
+            displayName('')
+          }
+        }
         scm {
           git {
             remote {
-              github('dythia102/coding-test')
-              credentials('github-pat')
+              url('https://github.com/dythia102/coding-test.git')
+              credentials('github-token')
             }
-            branch('main')
+            branch('*/main')
           }
         }
+        triggers {
+          githubPush()
+        }
         steps {
-          dsl {
-            external('/var/jenkins_home/jobs/job-dsl-seed.groovy')
-            removeAction('DELETE')
-          }
+          shell('docker info')
         }
       }
