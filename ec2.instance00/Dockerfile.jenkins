@@ -12,9 +12,11 @@ RUN apt-get update && \
 RUN jenkins-plugin-cli --plugins \
     configuration-as-code \
     workflow-aggregator \
+    job-dsl \
     docker-workflow \
     git \
     github \
     github-branch-source
+
 
 USER jenkins

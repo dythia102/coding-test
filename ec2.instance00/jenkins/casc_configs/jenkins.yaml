@@ -16,25 +16,8 @@ unclassified:
 # ✅ This block must be at the root level — not inside 'jenkins:'
 jobs:
   - script: >
-      pipelineJob('docker-info') {
-        definition {
-          cps {
-            script("""
-            pipeline {
-              agent any
-              triggers {
-                githubPush()
-              }
-              stages {
-                stage('Docker Info') {
-                  steps {
-                    sh 'docker info'
-                  }
-                }
-              }
-            }
-            """.stripIndent())
-            sandbox()
-          }
+      freeStyleJob('docker-info') {
+        steps {
+          shell('docker info')
         }
       }
