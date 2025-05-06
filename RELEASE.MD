@@ -27,3 +27,9 @@
 - create development script
 - prepare for production
 - add new api api/ai/info
+
+6 May 2025
+    - finish aws account create and instance provisioning
+
+7 May 2025
+    - finish jenkins setup on aws
