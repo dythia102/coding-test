@@ -9,31 +9,32 @@ jenkins:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
 
-  jobs:
-    - script: >
-        pipelineJob('docker-info') {
-          definition {
-            cps {
-              script("""
-              pipeline {
-                agent any
-                triggers {
-                  githubPush()
-                }
-                stages {
-                  stage('Docker Info') {
-                    steps {
-                      sh 'docker info'
-                    }
-                  }
-                }
-              }
-              """.stripIndent())
-              sandbox()
-            }
-          }
-        }
-
 unclassified:
   location:
     url: http://localhost:8080/
+
+# ✅ This block must be at the root level — not inside 'jenkins:'
+jobs:
+  - script: >
+      pipelineJob('docker-info') {
+        definition {
+          cps {
+            script("""
+            pipeline {
+              agent any
+              triggers {
+                githubPush()
+              }
+              stages {
+                stage('Docker Info') {
+                  steps {
+                    sh 'docker info'
+                  }
+                }
+              }
+            }
+            """.stripIndent())
+            sandbox()
+          }
+        }
+      }
