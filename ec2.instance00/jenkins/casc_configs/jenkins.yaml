@@ -24,26 +24,20 @@ jobs:
   - script: >
       pipelineJob('docker-info-prod-hook') {
         definition {
-          cps {
-            script("""
-            pipeline {
-              agent any
-              triggers {
-                githubPush()
-              }
-              stages {
-                stage('Check Branch') {
-                  when {
-                    expression { env.GIT_BRANCH == 'origin/production' || env.BRANCH_NAME == 'production' }
-                  }
-                  steps {
-                    sh 'docker info'
-                  }
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/dythia102/coding-test.git')
                 }
+                branches('*/production')
               }
             }
-            """.stripIndent())
-            sandbox()
+            scriptPath('Jenkinsfile') // optional if you want an inline script instead
           }
         }
+        triggers {
+          githubPush()
+        }
       }
+
