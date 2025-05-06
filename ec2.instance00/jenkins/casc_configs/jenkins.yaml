@@ -12,8 +12,6 @@ jenkins:
 unclassified:
   location:
     url: http://52.74.52.230:8080/
-  github:
-    hookUrl: http://52.74.52.230:8080/github-webhook/
 
 credentials:
   system:
