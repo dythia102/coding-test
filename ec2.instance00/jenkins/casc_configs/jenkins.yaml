@@ -5,30 +5,25 @@ jenkins:
       users:
         - id: ${ADMIN_USER}
           password: ${ADMIN_PASSWORD}
+
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
 
 unclassified:
   location:
-    url: http://localhost:8080/
+    url: http://52.74.52.230:8080/
 
-# ✅ This block must be at the root level — not inside 'jenkins:'
 jobs:
   - script: >
-      freeStyleJob('docker-info') {
-        steps {
-          shell('docker info')
-        }
-      }
-  - script: >
       pipelineJob('docker-info-prod-hook') {
+        description('Triggered by GitHub Webhook on push to production branch')
         definition {
           cpsScm {
             scm {
               git {
                 remote {
-                  url('https://github.com/dythia102/coding-test.git')
+                  github('dythia102/coding-test', 'https')
                 }
                 branches('*/production')
               }
@@ -36,13 +31,33 @@ jobs:
             scriptPath('Jenkinsfile')
           }
         }
-        triggers {
-          githubPush()
-        }
         properties {
           githubProjectUrl('https://github.com/dythia102/coding-test')
         }
+        triggers {
+          githubPush()
+        }
       }
 
+tool:
+  git:
+    installations:
+      - name: "Default"
+        home: "/usr/bin/git"
 
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              id: "github-credentials"
+              username: "${GITHUB_USER}"
+              password: "${GITHUB_PAT}"
+              description: "GitHub PAT for webhook/pipeline access"
 
+github:
+  servers:
+    - apiUrl: "https://api.github.com"
+      name: "GitHub"
+      credentialsId: "github-credentials"
+      manageHooks: true
