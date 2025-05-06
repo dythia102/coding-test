@@ -1,0 +1,1 @@
+docker compose -f docker-compose.devops.yml up --build -d

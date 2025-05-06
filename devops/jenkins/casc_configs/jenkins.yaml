@@ -16,7 +16,7 @@ credentials:
               description: GitHub Personal Access Token
 jobs:
   - script: >
-      freeStyleJob('Manual_Docker_Info') {
+      freeStyleJob('docker-info') {
         description('Manual job to execute docker info')
         logRotator {
           numToKeep(10)
@@ -26,7 +26,7 @@ jobs:
         }
       }
   - script: >
-      freeStyleJob('GitHub_Webhook_Docker_Info') {
+      freeStyleJob('docker-info') {
         description('Job to execute docker info triggered by GitHub webhook')
         logRotator {
           numToKeep(10)
