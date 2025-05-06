@@ -21,3 +21,29 @@ jobs:
           shell('docker info')
         }
       }
+  - script: >
+      pipelineJob('docker-info-prod-hook') {
+        definition {
+          cps {
+            script("""
+            pipeline {
+              agent any
+              triggers {
+                githubPush()
+              }
+              stages {
+                stage('Check Branch') {
+                  when {
+                    expression { env.GIT_BRANCH == 'origin/production' || env.BRANCH_NAME == 'production' }
+                  }
+                  steps {
+                    sh 'docker info'
+                  }
+                }
+              }
+            }
+            """.stripIndent())
+            sandbox()
+          }
+        }
+      }
