@@ -11,9 +11,9 @@ services:
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
       - CASC_JENKINS_CONFIG=/var/jenkins_home/casc_configs
-      - ADMIN_USER=admin
-      - ADMIN_PASSWORD=admin123
-      - GITHUB_PAT="${GITHUB_TOKEN}"
+      - ADMIN_USER=${ADMIN_USER}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - GITHUB_PAT=${GITHUB_TOKEN}
     volumes:
       - ./jenkins/jenkins_home:/var/jenkins_home
       - ./jenkins/casc_configs:/var/jenkins_home/casc_configs
@@ -21,20 +21,20 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock # 🔥 Docker socket
     privileged: true
     restart: unless-stopped
-  portainer:
-    image: portainer/portainer-ce:latest
-    ports:
-      - target: 9000
-        published: 9000
-        mode: host
-    volumes:
-      - ./portainer_data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - ADMIN_USERNAME=admin
-      - ADMIN_PASSWORD=admin
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
+  # portainer:
+  #   image: portainer/portainer-ce:latest
+  #   ports:
+  #     - target: 9000
+  #       published: 9000
+  #       mode: host
+  #   volumes:
+  #     - ./portainer_data:/data
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   environment:
+  #     - ADMIN_USERNAME=admin
+  #     - ADMIN_PASSWORD=admin
+  #   deploy:
+  #     mode: replicated
+  #     replicas: 1
+  #     restart_policy:
+  #       condition: on-failure
