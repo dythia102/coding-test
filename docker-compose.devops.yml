@@ -16,9 +16,9 @@ services:
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
     volumes:
-      - ./jenkins/jenkins_home:/var/jenkins_home
-      - ./jenkins/casc_configs:/var/jenkins_home/casc_configs
-      - ./jenkins/jobs:/var/jenkins_home/jobs
+      - ./devops/jenkins/jenkins_home:/var/jenkins_home
+      - ./devops/jenkins/casc_configs:/var/jenkins_home/casc_configs
+      - ./devops/jenkins/jobs:/var/jenkins_home/jobs
       - /var/run/docker.sock:/var/run/docker.sock
     privileged: true
     restart: unless-stopped
@@ -29,7 +29,7 @@ services:
         published: 9000
         mode: host
     volumes:
-      - ./portainer_data:/data
+      - ./devops/portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - ADMIN_USERNAME=admin

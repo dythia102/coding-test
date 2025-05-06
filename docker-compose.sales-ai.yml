@@ -4,7 +4,7 @@ services:
     container_name: ngrok
     restart: unless-stopped
     volumes:
-      - ./ngrok.yml:/etc/ngrok.yml
+      - ./ngrok/ngrok.yml:/etc/ngrok.yml
     command: start --all --config /etc/ngrok.yml
     ports:
       - "4040:4040"
