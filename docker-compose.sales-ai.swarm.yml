@@ -9,7 +9,7 @@ services:
     working_dir: /app
     volumes:
       - ./backend:/app
-      - ./backend/.env:/app/.env
+      # - ./backend/.env:/app/.env
     environment:
       APP_TITLE: "Sales AI (Dev)"
       APP_DESCRIPTION: "Sales Rep Intelligence API"
@@ -19,6 +19,7 @@ services:
       AI_API_BASE: "https://openrouter.ai/api/v1"
       USE_AI: "true"
       FRONTEND_URL: "http://52.74.52.230:3000"
+      AI_API_KEY: "xxxxxxxxxxxxxxxx"
     command: >
       sh -c "
         uvicorn main:app --host 0.0.0.0 --port 8000
@@ -43,7 +44,7 @@ services:
     working_dir: /app
     volumes:
       - ./frontend:/app
-      - ./frontend/.env:/app/.env
+      # - ./frontend/.env:/app/.env
       - ./scripts/run-wait-ngrok.sh:/app/run-wait-ngrok.sh
     environment:
       NEXT_PUBLIC_API_URL: "http://52.74.52.230:8000"
