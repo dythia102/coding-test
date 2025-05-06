@@ -10,6 +10,7 @@ services:
       - "50000:50000"
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false -Duser.timezone=Asia/Jakarta
       - CASC_JENKINS_CONFIG=/var/jenkins_home/casc_configs
       - CASC_ENV=true
       - ADMIN_USER=${ADMIN_USER}
