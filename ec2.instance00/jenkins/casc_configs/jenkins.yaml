@@ -44,3 +44,24 @@ jobs:
           }
         }
       }
+  - script: >
+      pipelineJob('docker-info-prod-hook') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/dythia102/coding-test.git')
+                  credentials('github-credentials')
+                }
+                branches('*/production')
+              }
+            }
+            scriptPath('Jenkinsfile')
+          }
+        }
+        triggers {
+          scm('H/5 * * * *') // backup trigger
+          githubPush()
+        }
+      }
