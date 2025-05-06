@@ -40,7 +40,6 @@ services:
     working_dir: /app
     volumes:
       - ./frontend:/app
-      - ./scripts/run-wait-ngrok.sh:/app/run-wait-ngrok.sh
     environment:
       NEXT_PUBLIC_API_URL: "http://52.74.52.230:8000"
     command: >
@@ -79,7 +78,7 @@ services:
       restart_policy:
         condition: on-failure
         delay: 5s
-        max_attempts: 3
+        max_attempts: 10
       resources:
         limits:
           cpus: "0.25"
