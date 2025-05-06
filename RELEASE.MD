@@ -27,5 +27,3 @@
 - create development script
 - prepare for production
 - add new api api/ai/info
-
-TEST
