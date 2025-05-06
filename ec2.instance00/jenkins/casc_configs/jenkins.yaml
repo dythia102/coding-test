@@ -1,13 +1,9 @@
 unclassified:
-  globalConfigFiles:
-    configs:
-      - id: "global-maven-settings"
-        name: "global-maven-settings"
-        comment: "Global Maven settings"
-        content: ""
   gitSCM:
     globalConfigName: "dythia102"
     globalConfigEmail: "dythia102@example.com"
+  location:
+    url: "http://52.74.52.230:8080/"
 credentials:
   system:
     domainCredentials:
@@ -20,7 +16,7 @@ credentials:
               description: GitHub Personal Access Token
 jobs:
   - script: >
-      freestyleJob('Manual_Docker_Info') {
+      freeStyleJob('Manual_Docker_Info') {
         description('Manual job to execute docker info')
         logRotator {
           numToKeep(10)
@@ -30,14 +26,14 @@ jobs:
         }
       }
   - script: >
-      freestyleJob('GitHub_Webhook_Docker_Info') {
+      freeStyleJob('GitHub_Webhook_Docker_Info') {
         description('Job to execute docker info triggered by GitHub webhook')
         logRotator {
           numToKeep(10)
         }
         properties {
           githubProjectProperty {
-            projectUrl('https://github.com/dythia102/coding-test/')
+            projectUrlStr('https://github.com/dythia102/coding-test/')
             displayName('')
           }
         }
@@ -47,7 +43,7 @@ jobs:
               url('https://github.com/dythia102/coding-test.git')
               credentials('github-token')
             }
-            branch('*/main')
+            branch('*/production')
           }
         }
         triggers {

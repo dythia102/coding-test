@@ -11,14 +11,15 @@ services:
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
       - CASC_JENKINS_CONFIG=/var/jenkins_home/casc_configs
+      - CASC_ENV=true
       - ADMIN_USER=${ADMIN_USER}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - GITHUB_PAT=${GITHUB_TOKEN}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
     volumes:
       - ./jenkins/jenkins_home:/var/jenkins_home
       - ./jenkins/casc_configs:/var/jenkins_home/casc_configs
       - ./jenkins/jobs:/var/jenkins_home/jobs
-      - /var/run/docker.sock:/var/run/docker.sock # 🔥 Docker socket
+      - /var/run/docker.sock:/var/run/docker.sock
     privileged: true
     restart: unless-stopped
   # portainer:

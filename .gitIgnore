@@ -61,3 +61,7 @@ backend/.ngrok.env
 frontend/.ngrok.env
 
 frontend/package-lock.json
+
+ec2.instance00/jenkins/jenkins_home/
+ec2.instance00/jenkins/jobs/
+
