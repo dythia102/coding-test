@@ -2,11 +2,19 @@ FROM jenkins/jenkins:lts-jdk17
 
 USER root
 
-# Install Docker CLI
+# Install docker CLI
 RUN apt-get update && \
     apt-get install -y docker.io && \
     usermod -aG docker jenkins && \
     apt-get clean
 
-# Switch back to Jenkins user
+# Install Jenkins plugins
+RUN jenkins-plugin-cli --plugins \
+    configuration-as-code \
+    workflow-aggregator \
+    docker-workflow \
+    git \
+    github \
+    github-branch-source
+
 USER jenkins
