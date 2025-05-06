@@ -25,34 +25,22 @@ credentials:
 
 jobs:
   - script: >
-      organizationFolder('coding-test-org') {
-        description('GitHub repo for automated Docker info retrieval')
-        displayName('Coding Test Org')
-
-        organizations {
-          github {
-            repoOwner('dythia102')
-            credentialsId('github-credentials')
-            apiUri('https://api.github.com')
-          }
-        }
-
-        projectFactories {
-          workflowMultiBranchProjectFactory {
-            scriptPath('Jenkinsfile')
-          }
-        }
-
-        triggers {
-          periodicFolderTrigger {
-            interval('1d')
-          }
-        }
-
-        orphanedItemStrategy {
-          discardOldItems {
-            daysToKeep(7)
-            numToKeep(10)
+      pipelineJob('docker-info') {
+        definition {
+          cps {
+            script('''
+              pipeline {
+                agent any
+                stages {
+                  stage('Docker Info') {
+                    steps {
+                      sh 'docker info'
+                    }
+                  }
+                }
+              }
+            ''')
+            sandbox()
           }
         }
       }
