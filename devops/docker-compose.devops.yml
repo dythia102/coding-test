@@ -22,20 +22,20 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     privileged: true
     restart: unless-stopped
-  # portainer:
-  #   image: portainer/portainer-ce:latest
-  #   ports:
-  #     - target: 9000
-  #       published: 9000
-  #       mode: host
-  #   volumes:
-  #     - ./portainer_data:/data
-  #     - /var/run/docker.sock:/var/run/docker.sock
-  #   environment:
-  #     - ADMIN_USERNAME=admin
-  #     - ADMIN_PASSWORD=admin
-  #   deploy:
-  #     mode: replicated
-  #     replicas: 1
-  #     restart_policy:
-  #       condition: on-failure
+  portainer:
+    image: portainer/portainer-ce:latest
+    ports:
+      - target: 9000
+        published: 9000
+        mode: host
+    volumes:
+      - ./portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
