@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   backend:
-    image: sales-ai-backend:latest
+    image: dythia102/sales-ai-backend:latest
     # build:
     #   context: ./backend
     #   dockerfile: Dockerfile
