@@ -5,10 +5,10 @@ WORKDIR /app
 # Install build dependencies using apt-get
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        gcc \
-        libc-dev \
-        libffi-dev \
-        python3-dev && \
+    gcc \
+    libc-dev \
+    libffi-dev \
+    python3-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -20,7 +20,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy application code
-COPY . /app
+COPY . .
 
 # Command to run the application
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
