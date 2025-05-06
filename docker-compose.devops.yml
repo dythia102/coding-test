@@ -2,7 +2,7 @@ services:
   jenkins:
     build:
       context: ./devops
-      dockerfile: ./devops/Dockerfile.jenkins
+      dockerfile: Dockerfile.jenkins
     container_name: jenkins
     user: root
     ports:
