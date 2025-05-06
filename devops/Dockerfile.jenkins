@@ -2,11 +2,11 @@ FROM jenkins/jenkins:lts-alpine-jdk21
 
 USER root
 
-# Install docker CLI
-RUN apt-get update && \
-    apt-get install -y docker.io && \
-    usermod -aG docker jenkins && \
-    apt-get clean
+# Install Docker CLI
+RUN apk update && \
+    apk add --no-cache docker-cli && \
+    addgroup -S docker || true && \
+    addgroup jenkins docker
 
 # Install Jenkins plugins
 RUN jenkins-plugin-cli --plugins \
@@ -17,6 +17,5 @@ RUN jenkins-plugin-cli --plugins \
     git \
     github \
     github-branch-source
-
 
 USER jenkins
