@@ -3,13 +3,9 @@ version: "3.8"
 services:
   backend:
     image: dythia102/sales-ai-backend:latest
-    # build:
-    #   context: ./backend
-    #   dockerfile: Dockerfile
     working_dir: /app
     volumes:
       - ./backend:/app
-      # - ./backend/.env:/app/.env
     environment:
       APP_TITLE: "Sales AI (Dev)"
       APP_DESCRIPTION: "Sales Rep Intelligence API"
@@ -44,7 +40,6 @@ services:
     working_dir: /app
     volumes:
       - ./frontend:/app
-      # - ./frontend/.env:/app/.env
       - ./scripts/run-wait-ngrok.sh:/app/run-wait-ngrok.sh
     environment:
       NEXT_PUBLIC_API_URL: "http://52.74.52.230:8000"
