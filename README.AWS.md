@@ -519,3 +519,11 @@ aws ec2 authorize-security-group-ingress \
 ```bash
     ssh -i ~/.ssh/aws-interopera.awskeypair.pem ec2-user@52.76.218.70 "sudo dnf install -y git"
 ```
+
+## Label docker swarms
+
+```bash
+docker node ls
+docker node update --label-add name=worker1 <worker-node-id>
+docker node inspect <worker-node-id>
+```
