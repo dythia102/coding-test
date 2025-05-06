@@ -14,14 +14,6 @@ jenkins:
       excludeClientIPFromCrumb: false
   remotingSecurity:
     enabled: true
-  globalCredentials:
-    configuration:
-      provider:
-        github:
-          githubToken:
-            id: "github-pat"
-            description: "GitHub Personal Access Token"
-            token: "${GITHUB_PAT}"
 unclassified:
   gitHubPluginConfig:
     hookUrl: "http://52.74.52.230:8080/github-webhook/"
@@ -29,6 +21,15 @@ unclassified:
       - name: "github"
         apiUrl: "https://api.github.com"
         credentialsId: "github-pat"
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - string:
+              scope: GLOBAL
+              id: "github-pat"
+              description: "GitHub Personal Access Token"
+              secret: "${GITHUB_PAT}"
 jobs:
   - script: |
       job('Seed-Job') {
