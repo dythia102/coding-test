@@ -85,8 +85,11 @@ services:
           - node.role == manager
     networks:
       - sales-ai_default
+    command: >
+      sh -c "for i in {1..60}; do nslookup frontend && nslookup backend && break; sleep 10; done && nginx -g 'daemon off;'"
 
 networks:
   sales-ai_default:
     name: sales-ai_default
-    external: true
+    attachable: true
+    # external: true

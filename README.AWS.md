@@ -65,18 +65,42 @@ chmod 400 aws-interopera.awskeypair.pem
 ### **4. Allow Ports (SSH, HTTP, HTTPS, custom)**
 ```bash
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 22 --cidr 0.0.0.0/0
-
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 80 --cidr 0.0.0.0/0
-
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 443 --cidr 0.0.0.0/0
-
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 8000 --cidr 0.0.0.0/0
-
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 3000 --cidr 0.0.0.0/0
-
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 9000 --cidr 0.0.0.0/0
-
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 8080 --cidr 0.0.0.0/0
+
+# Swarm cluster management (TCP 2377, restricted to security group)
+aws ec2 authorize-security-group-ingress \
+  --group-name aws-interopera-secgroup \
+  --protocol tcp \
+  --port 2377 \
+  --source-group aws-interopera-secgroup
+
+# Swarm node discovery (TCP 7946, restricted to security group)
+aws ec2 authorize-security-group-ingress \
+  --group-name aws-interopera-secgroup \
+  --protocol tcp \
+  --port 7946 \
+  --source-group aws-interopera-secgroup
+
+# Swarm node discovery (UDP 7946, restricted to security group)
+aws ec2 authorize-security-group-ingress \
+  --group-name aws-interopera-secgroup \
+  --protocol udp \
+  --port 7946 \
+  --source-group aws-interopera-secgroup
+
+# Swarm overlay network (UDP 4789, restricted to security group)
+aws ec2 authorize-security-group-ingress \
+  --group-name aws-interopera-secgroup \
+  --protocol udp \
+  --port 4789 \
+  --source-group aws-interopera-secgroup
+
+
 
 ```
 #### Verification:
@@ -85,6 +109,15 @@ aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --
     --group-names aws-interopera-secgroup \
     --region ap-southeast-1 \
     --query "SecurityGroups[*].IpPermissions[*].[IpProtocol,FromPort,ToPort,IpRanges[*].CidrIp]" \
+    --output table
+
+    aws ec2 describe-instances \
+    --region ap-southeast-1 \
+    --query "Reservations[].Instances[].[
+        InstanceId,
+        PrivateIpAddress,
+        join(',', SecurityGroups[].GroupName)
+    ]" \
     --output table
 ```
 
