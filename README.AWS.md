@@ -247,6 +247,9 @@ docker node update --label-add name=worker1 <worker-node-id>
 docker node inspect <worker-node-id>
 ```
 
+## Label Login for image registry do on both instance create PAT 1st
+docker login -u dythia102
+
 TODO:
     fix all credential leaks
     vault, for secret processing
