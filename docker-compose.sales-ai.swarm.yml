@@ -54,8 +54,6 @@ services:
       placement:
         constraints:
           - node.labels.name == node00
-    networks:
-      - sales-ai_default
 
   nginx:
     image: nginx:alpine
