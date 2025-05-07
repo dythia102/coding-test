@@ -90,3 +90,5 @@ networks:
   sales-ai_default:
     driver: overlay
     attachable: true
+    external:
+      name: sales-ai_default
