@@ -23,6 +23,9 @@ jobs:
         }
         steps {
           shell('docker info')
+          shell('pwd')
+          shell('ls -la')
+          shell('git')
         }
       }
   - script: >
