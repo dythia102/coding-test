@@ -7,7 +7,6 @@ services:
     working_dir: /app
     volumes:
       - ./backend:/app
-      - ./backend/.env:/app/.env
     ports:
       - "8000:8000"
     environment:
@@ -19,6 +18,7 @@ services:
       AI_API_BASE: "https://openrouter.ai/api/v1"
       USE_AI: "true"
       FRONTEND_URL: "http://localhost:3000"
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
     command: >
       sh -c "
         uvicorn main:app --host 0.0.0.0 --port 8000
@@ -31,7 +31,6 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
-      - ./frontend/.env:/app/.env
       - ./scripts/run-wait-ngrok.sh:/app/run-wait-ngrok.sh
     environment:
       NEXT_PUBLIC_API_URL: "http://localhost:8000"

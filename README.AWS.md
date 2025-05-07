@@ -1,10 +1,8 @@
 # **Work Logs** 
 launch and configure an **EC2 instance using AWS CLI**
-
 ---
 
 ## ✅ Step-by-step EC2 Setup via AWS CLI
-
 ### **0. Prerequisites**
 - [x] AWS CLI installed (`aws --version`)
 - [x] Run `aws configure` with your:
@@ -21,7 +19,6 @@ launch and configure an **EC2 instance using AWS CLI**
 
 ### **1. Choose an AMI**
 Use Amazon Linux 2023 with ARM Arch, for price peformance:
-
   ```bash
   aws ec2 describe-images \
     --owners amazon \
@@ -71,36 +68,14 @@ aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 3000 --cidr 0.0.0.0/0
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 9000 --cidr 0.0.0.0/0
 aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 8080 --cidr 0.0.0.0/0
-
 # Swarm cluster management (TCP 2377, restricted to security group)
-aws ec2 authorize-security-group-ingress \
-  --group-name aws-interopera-secgroup \
-  --protocol tcp \
-  --port 2377 \
-  --source-group aws-interopera-secgroup
-
+aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 2377 --source-group aws-interopera-secgroup
 # Swarm node discovery (TCP 7946, restricted to security group)
-aws ec2 authorize-security-group-ingress \
-  --group-name aws-interopera-secgroup \
-  --protocol tcp \
-  --port 7946 \
-  --source-group aws-interopera-secgroup
-
+aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol tcp --port 7946 --source-group aws-interopera-secgroup
 # Swarm node discovery (UDP 7946, restricted to security group)
-aws ec2 authorize-security-group-ingress \
-  --group-name aws-interopera-secgroup \
-  --protocol udp \
-  --port 7946 \
-  --source-group aws-interopera-secgroup
-
+aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol udp --port 7946 --source-group aws-interopera-secgroup
 # Swarm overlay network (UDP 4789, restricted to security group)
-aws ec2 authorize-security-group-ingress \
-  --group-name aws-interopera-secgroup \
-  --protocol udp \
-  --port 4789 \
-  --source-group aws-interopera-secgroup
-
-
+aws ec2 authorize-security-group-ingress --group-name aws-interopera-secgroup --protocol udp --port 4789 --source-group aws-interopera-secgroup
 
 ```
 #### Verification:
@@ -123,139 +98,15 @@ aws ec2 authorize-security-group-ingress \
 
 ---
 ### **5. Launch the EC2 Instance**
+   - t4g.micro: 1 vCPU, 1GB RAM
+   - t4g.small: 2 vCPUs, 2GB RAM
+   - t4g.medium: 2 vCPUs, 4GB RAM
+   - t4g.large: 2 vCPUs, 8GB RAM 
+   - t4g.xlarge: 4 vCPUs, 16GB RAM
+
 ```bash
-aws ec2 run-instances --image-id ami-0d47fa2c431cf6d45 --count 1 --instance-type t4g.micro --key-name aws-interopera --security-groups aws-interopera-secgroup --region ap-southeast-1
+aws ec2 run-instances --image-id ami-0d47fa2c431cf6d45 --count 1 --instance-type t4g.medium --key-name aws-interopera --security-groups aws-interopera-secgroup --region ap-southeast-1
 ```
-
-#### OUTPUT
-```json
-{
-    "ReservationId": "r-09e6595b30c8da164",
-    "OwnerId": "094604222284",
-    "Groups": [],
-    "Instances": [
-        {
-            "Architecture": "arm64",
-            "BlockDeviceMappings": [],
-            "ClientToken": "3c8474b6-dbaa-450a-a61d-929b0692c7ae",
-            "EbsOptimized": false,
-            "EnaSupport": true,
-            "Hypervisor": "xen",
-            "NetworkInterfaces": [
-                {
-                    "Attachment": {
-                        "AttachTime": "2025-05-05T20:19:20+00:00",
-                        "AttachmentId": "eni-attach-0ab0c91c8a8e0d4f2",
-                        "DeleteOnTermination": true,
-                        "DeviceIndex": 0,
-                        "Status": "attaching",
-                        "NetworkCardIndex": 0
-                    },
-                    "Description": "",
-                    "Groups": [
-                        {
-                            "GroupId": "sg-0226dc0fa229f050a",
-                            "GroupName": "aws-interopera-secgroup"
-                        }
-                    ],
-                    "Ipv6Addresses": [],
-                    "MacAddress": "06:e2:75:77:b2:27",
-                    "NetworkInterfaceId": "eni-012749e75ce295830",
-                    "OwnerId": "094604222284",
-                    "PrivateDnsName": "ip-172-31-44-94.ap-southeast-1.compute.internal",
-                    "PrivateIpAddress": "172.31.44.94",
-                    "PrivateIpAddresses": [
-                        {
-                            "Primary": true,
-                            "PrivateDnsName": "ip-172-31-44-94.ap-southeast-1.compute.internal",
-                            "PrivateIpAddress": "172.31.44.94"
-                        }
-                    ],
-                    "SourceDestCheck": true,
-                    "Status": "in-use",
-                    "SubnetId": "subnet-0ce769afbe5db3ee7",
-                    "VpcId": "vpc-08ff9d8e3a93ce8a0",
-                    "InterfaceType": "interface",
-                    "Operator": {
-                        "Managed": false
-                    }
-                }
-            ],
-            "RootDeviceName": "/dev/xvda",
-            "RootDeviceType": "ebs",
-            "SecurityGroups": [
-                {
-                    "GroupId": "sg-0226dc0fa229f050a",
-                    "GroupName": "aws-interopera-secgroup"
-                }
-            ],
-            "SourceDestCheck": true,
-            "StateReason": {
-                "Code": "pending",
-                "Message": "pending"
-            },
-            "VirtualizationType": "hvm",
-            "CpuOptions": {
-                "CoreCount": 2,
-                "ThreadsPerCore": 1
-            },
-            "CapacityReservationSpecification": {
-                "CapacityReservationPreference": "open"
-            },
-            "MetadataOptions": {
-                "State": "pending",
-                "HttpTokens": "required",
-                "HttpPutResponseHopLimit": 2,
-                "HttpEndpoint": "enabled",
-                "HttpProtocolIpv6": "disabled",
-                "InstanceMetadataTags": "disabled"
-            },
-            "EnclaveOptions": {
-                "Enabled": false
-            },
-            "BootMode": "uefi",
-            "PrivateDnsNameOptions": {
-                "HostnameType": "ip-name",
-                "EnableResourceNameDnsARecord": false,
-                "EnableResourceNameDnsAAAARecord": false
-            },
-            "MaintenanceOptions": {
-                "AutoRecovery": "default"
-            },
-            "CurrentInstanceBootMode": "uefi",
-            "Operator": {
-                "Managed": false
-            },
-            "InstanceId": "i-085ae187d97a893f2",
-            "ImageId": "ami-0d47fa2c431cf6d45",
-            "State": {
-                "Code": 0,
-                "Name": "pending"
-            },
-            "PrivateDnsName": "ip-172-31-44-94.ap-southeast-1.compute.internal",
-            "PublicDnsName": "",
-            "StateTransitionReason": "",
-            "KeyName": "aws-interopera",
-            "AmiLaunchIndex": 0,
-            "ProductCodes": [],
-            "InstanceType": "t4g.micro",
-            "LaunchTime": "2025-05-05T20:19:20+00:00",
-            "Placement": {
-                "GroupName": "",
-                "Tenancy": "default",
-                "AvailabilityZone": "ap-southeast-1b"
-            },
-            "Monitoring": {
-                "State": "disabled"
-            },
-            "SubnetId": "subnet-0ce769afbe5db3ee7",
-            "VpcId": "vpc-08ff9d8e3a93ce8a0",
-            "PrivateIpAddress": "172.31.44.94"
-        }
-    ]
-}
-```
-
 #### Verification:
 ```bash
     aws ec2 describe-instances \
@@ -301,7 +152,6 @@ aws ec2 run-instances --image-id ami-0d47fa2c431cf6d45 --count 1 --instance-type
 ```bash
     ssh -i ~/.ssh/aws-interopera.awskeypair.pem ec2-user@52.74.52.230
 ```
-
 ```bash
     uname -a
 ```
@@ -335,151 +185,18 @@ aws ec2 run-instances --image-id ami-0d47fa2c431cf6d45 --count 1 --instance-type
     --region ap-southeast-1 \
     --output table
 ```
+
 ### 11. Create application instance
 ```bash
     aws ec2 run-instances \
     --image-id ami-0d47fa2c431cf6d45 \
     --count 1 \
-    --instance-type t4g.micro \
+    --instance-type t4g.medium \
     --key-name aws-interopera \
     --security-groups aws-interopera-secgroup \
     --region ap-southeast-1 \
     --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=aws-interopera01}]'
 ```
-#### Output:
-```json
-    {
-        "ReservationId": "r-048a30d0ca11dfffe",
-        "OwnerId": "094604222284",
-        "Groups": [],
-        "Instances": [
-            {
-                "Architecture": "arm64",
-                "BlockDeviceMappings": [],
-                "ClientToken": "bb97b031-ec8e-4f7e-976a-7153827cb1d6",
-                "EbsOptimized": false,
-                "EnaSupport": true,
-                "Hypervisor": "xen",
-                "NetworkInterfaces": [
-                    {
-                        "Attachment": {
-                            "AttachTime": "2025-05-05T22:12:33+00:00",
-                            "AttachmentId": "eni-attach-0480f82763f56caa6",
-                            "DeleteOnTermination": true,
-                            "DeviceIndex": 0,
-                            "Status": "attaching",
-                            "NetworkCardIndex": 0
-                        },
-                        "Description": "",
-                        "Groups": [
-                            {
-                                "GroupId": "sg-0226dc0fa229f050a",
-                                "GroupName": "aws-interopera-secgroup"
-                            }
-                        ],
-                        "Ipv6Addresses": [],
-                        "MacAddress": "06:9f:8f:04:34:79",
-                        "NetworkInterfaceId": "eni-0a15ec6068ced0b95",
-                        "OwnerId": "094604222284",
-                        "PrivateDnsName": "ip-172-31-41-235.ap-southeast-1.compute.internal",
-                        "PrivateIpAddress": "172.31.41.235",
-                        "PrivateIpAddresses": [
-                            {
-                                "Primary": true,
-                                "PrivateDnsName": "ip-172-31-41-235.ap-southeast-1.compute.internal",
-                                "PrivateIpAddress": "172.31.41.235"
-                            }
-                        ],
-                        "SourceDestCheck": true,
-                        "Status": "in-use",
-                        "SubnetId": "subnet-0ce769afbe5db3ee7",
-                        "VpcId": "vpc-08ff9d8e3a93ce8a0",
-                        "InterfaceType": "interface",
-                        "Operator": {
-                            "Managed": false
-                        }
-                    }
-                ],
-                "RootDeviceName": "/dev/xvda",
-                "RootDeviceType": "ebs",
-                "SecurityGroups": [
-                    {
-                        "GroupId": "sg-0226dc0fa229f050a",
-                        "GroupName": "aws-interopera-secgroup"
-                    }
-                ],
-                "SourceDestCheck": true,
-                "StateReason": {
-                    "Code": "pending",
-                    "Message": "pending"
-                },
-                "Tags": [
-                    {
-                        "Key": "Name",
-                        "Value": "aws-interopera01"
-                    }
-                ],
-                "VirtualizationType": "hvm",
-                "CpuOptions": {
-                    "CoreCount": 2,
-                    "ThreadsPerCore": 1
-                },
-                "CapacityReservationSpecification": {
-                    "CapacityReservationPreference": "open"
-                },
-                "MetadataOptions": {
-                    "State": "pending",
-                    "HttpTokens": "required",
-                    "HttpPutResponseHopLimit": 2,
-                    "HttpEndpoint": "enabled",
-                    "HttpProtocolIpv6": "disabled",
-                    "InstanceMetadataTags": "disabled"
-                },
-                "EnclaveOptions": {
-                    "Enabled": false
-                },
-                "BootMode": "uefi",
-                "PrivateDnsNameOptions": {
-                    "HostnameType": "ip-name",
-                    "EnableResourceNameDnsARecord": false,
-                    "EnableResourceNameDnsAAAARecord": false
-                },
-                "MaintenanceOptions": {
-                    "AutoRecovery": "default"
-                },
-                "CurrentInstanceBootMode": "uefi",
-                "Operator": {
-                    "Managed": false
-                },
-                "InstanceId": "i-07ee93cab00f1a500",
-                "ImageId": "ami-0d47fa2c431cf6d45",
-                "State": {
-                    "Code": 0,
-                    "Name": "pending"
-                },
-                "PrivateDnsName": "ip-172-31-41-235.ap-southeast-1.compute.internal",
-                "PublicDnsName": "",
-                "StateTransitionReason": "",
-                "KeyName": "aws-interopera",
-                "AmiLaunchIndex": 0,
-                "ProductCodes": [],
-                "InstanceType": "t4g.micro",
-                "LaunchTime": "2025-05-05T22:12:33+00:00",
-                "Placement": {
-                    "GroupName": "",
-                    "Tenancy": "default",
-                    "AvailabilityZone": "ap-southeast-1b"
-                },
-                "Monitoring": {
-                    "State": "disabled"
-                },
-                "SubnetId": "subnet-0ce769afbe5db3ee7",
-                "VpcId": "vpc-08ff9d8e3a93ce8a0",
-                "PrivateIpAddress": "172.31.41.235"
-            }
-        ]
-    }
-``` 
 
 #### Assign EIP
 ```bash
@@ -511,42 +228,11 @@ aws ec2 run-instances --image-id ami-0d47fa2c431cf6d45 --count 1 --instance-type
 #### Get private IP Init Swarm manager on instance00
 ```bash
 ip addr show 
-docker swarm init --advertise-addr 172.31.44.94 # this ip from ip addre show
-
-```bash
-aws ec2 authorize-security-group-ingress \
-  --group-name aws-interopera-secgroup \
-  --protocol tcp \
-  --port 2377 \
-  --cidr 0.0.0.0/0 \
-  --region ap-southeast-1
-```
-
-#### Get private IP Join Swarm on instance01
+docker swarm init --advertise-addr 172.31.44.94 
 
 ```bash
     docker swarm join --token SWMTKN-1-3jivpv8ixuuk6wu5m4nwduow107p8aa38ryzwinreuetmheytr-1evoaxj584k2v38apv6b0miyb 172.31.44.94:2377
 ```
-
-```json
-{
-    "Return": true,
-    "SecurityGroupRules": [
-        {
-            "SecurityGroupRuleId": "sgr-01048de1cc0940411",
-            "GroupId": "sg-0226dc0fa229f050a",
-            "GroupOwnerId": "094604222284",
-            "IsEgress": false,
-            "IpProtocol": "tcp",
-            "FromPort": 2377,
-            "ToPort": 2377,
-            "CidrIpv4": "0.0.0.0/0",
-            "SecurityGroupRuleArn": "arn:aws:ec2:ap-southeast-1:094604222284:security-group-rule/sgr-01048de1cc0940411"
-        }
-    ]
-}
-```
-
 ## install Git on devop instance
 
 ```bash
@@ -560,3 +246,8 @@ docker node ls
 docker node update --label-add name=worker1 <worker-node-id>
 docker node inspect <worker-node-id>
 ```
+
+TODO:
+    fix all credential leaks
+    vault, for secret processing
+    jenkins job to clean up docker periodically

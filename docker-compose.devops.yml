@@ -33,9 +33,6 @@ services:
     volumes:
       - ./devops/portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - ADMIN_USERNAME=${ADMIN_USER}
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     deploy:
       mode: replicated
       replicas: 1

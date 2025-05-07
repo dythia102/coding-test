@@ -3,7 +3,7 @@ unclassified:
     globalConfigName: "dythia102"
     globalConfigEmail: "dythia102@example.com"
   location:
-    url: "http://52.74.52.230:8080/"
+    url: ${JENKINS_URL}
 credentials:
   system:
     domainCredentials:

@@ -16,7 +16,6 @@ services:
     working_dir: /app
     volumes:
       - ./backend:/app
-      - ./backend/.env:/app/.env
       - ./scripts/run-wait-ngrok.sh:/app/run-wait-ngrok.sh
     ports:
       - "8000:8000"
@@ -28,6 +27,7 @@ services:
       AI_MODEL: "mistralai/mixtral-8x7b-instruct"
       AI_API_BASE: "https://openrouter.ai/api/v1"
       USE_AI: "true"
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
     command: >
       sh -c "
         apk add --no-cache curl jq && \
@@ -44,14 +44,13 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
-      - ./frontend/.env:/app/.env
       - ./scripts/run-wait-ngrok.sh:/app/run-wait-ngrok.sh
     command: >
       sh -c "
         apk add --no-cache curl jq && \
         chmod +x /app/run-wait-ngrok.sh && \
         /app/run-wait-ngrok.sh && \
-        cat /app/.ngrok.env > /app/.env && \
+        mv /app/.ngrok.env /app/.env && \
         npm install && \
         npm run build && \
         npm run start
