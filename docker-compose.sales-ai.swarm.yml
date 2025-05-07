@@ -3,7 +3,7 @@ services:
     image: dythia102/sales-ai-backend:latest
     working_dir: /app
     environment:
-      AI_API_KEY: "${OPENAI_API_KEY}"
+      AI_API_KEY: ${OPENAI_API_KEY}
       APP_TITLE: "Sales AI (Dev)"
       APP_DESCRIPTION: "Sales Rep Intelligence API"
       APP_VERSION: "1.0.0"
