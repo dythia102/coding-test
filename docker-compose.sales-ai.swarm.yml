@@ -85,8 +85,3 @@ services:
           - node.role == manager
     networks:
       - sales-ai_default
-
-networks:
-  sales-ai_default:
-    driver: overlay
-    attachable: true
