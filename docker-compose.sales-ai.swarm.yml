@@ -3,12 +3,9 @@ version: "3.8"
 services:
   backend:
     image: dythia102/sales-ai-backend:latest
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
     working_dir: /app
     environment:
-      AI_API_KEY: "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"
+      AI_API_KEY: "xxxxxxxxxxxxxxx"
       APP_TITLE: "Sales AI (Dev)"
       APP_DESCRIPTION: "Sales Rep Intelligence API"
       APP_VERSION: "1.0.0"
@@ -21,12 +18,6 @@ services:
       sh -c "
         uvicorn main:app --host 0.0.0.0 --port 8000
       "
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8000" ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
     deploy:
       mode: replicated
       replicas: 1
@@ -37,7 +28,7 @@ services:
       resources:
         limits:
           cpus: "0.5"
-          memory: 512M
+          memory: 1024M
       placement:
         constraints:
           - node.labels.name == node00
@@ -46,9 +37,6 @@ services:
 
   frontend:
     image: dythia102/sales-ai-frontend:latest
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
     working_dir: /app
     environment:
       NEXT_PUBLIC_API_URL: "http://52.74.52.230:8000"
@@ -56,12 +44,6 @@ services:
       sh -c "
         npm run start
       "
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:3000" ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
     deploy:
       mode: replicated
       replicas: 1

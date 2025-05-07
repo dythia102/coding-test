@@ -25,6 +25,7 @@ services:
     restart: unless-stopped
   portainer:
     image: portainer/portainer-ce:latest
+    container_name: portainer
     ports:
       - target: 9000
         published: 9000
