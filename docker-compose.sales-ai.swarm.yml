@@ -30,8 +30,6 @@ services:
       placement:
         constraints:
           - node.labels.name == node00
-    networks:
-      - sales-ai_default
 
   frontend:
     image: dythia102/sales-ai-frontend:latest
@@ -83,9 +81,3 @@ services:
       placement:
         constraints:
           - node.role == manager
-    networks:
-      - sales-ai_default
-
-networks:
-  sales-ai_default:
-    driver: overlay
