@@ -33,3 +33,6 @@
 
 7 May 2025
     - finish jenkins setup on aws
+    - finis docker deplyoment test
+
+    
