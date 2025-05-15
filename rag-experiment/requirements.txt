@@ -1,0 +1,14 @@
+jupyterlab
+numpy
+pandas
+torch
+langchain
+openai
+faiss-cpu
+sentence-transformers
+tiktoken
+PyMuPDF
+pdfplumber
+unstructured
+chromadb
+python-dotenv

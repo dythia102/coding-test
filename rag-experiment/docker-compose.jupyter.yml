@@ -1,0 +1,17 @@
+services:
+  jupyter:
+    build: .
+    container_name: rag-jupyter-gpu
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/workspace
+    working_dir: /workspace
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
