@@ -15,3 +15,5 @@ RUN pip3 install --upgrade pip && pip3 install \
     openai \
     faiss-cpu \
     tiktoken
+
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
