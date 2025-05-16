@@ -20,9 +20,10 @@ RUN pip install jupyter
 RUN pip install notebook
 RUN pip install jupyterlab notebook
 RUN pip install matplotlib
-
+RUN python -m ipykernel install --sys-prefix
+RUN pip install langchain_community
 # Copy the rest of the source code
 COPY . .
 
 # Launch Jupyter Notebook
-CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--NotebookApp.token=''"]
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''", "--ServerApp.disable_check_xsrf=True"]
