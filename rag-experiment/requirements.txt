@@ -12,3 +12,4 @@ pdfplumber
 unstructured
 chromadb
 python-dotenv
+matplotlib
