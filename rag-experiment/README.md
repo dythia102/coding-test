@@ -2,6 +2,7 @@
 
 This repo contains a research/development scaffold for Retrieval-Augmented Generation (RAG) using Langchain, and PyTorch in a GPU-enabled Jupyter environment.
 
+this Dockerfile env utilize GPU, so if you dont dont have it, you might want to adjust it to use CPU only, but i havent tested it
 ## Setup
 
 ```bash
