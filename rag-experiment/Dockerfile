@@ -22,6 +22,8 @@ RUN pip install jupyterlab notebook
 RUN pip install matplotlib
 RUN python -m ipykernel install --sys-prefix
 RUN pip install langchain_community
+RUN pip install seaborn
+
 # Copy the rest of the source code
 COPY . .
 
